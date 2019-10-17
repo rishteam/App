@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='FJU_Course_Registration_Sys_RIsh'
