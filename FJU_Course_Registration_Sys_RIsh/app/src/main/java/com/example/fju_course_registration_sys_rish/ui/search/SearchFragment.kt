@@ -1,4 +1,4 @@
-package com.example.fju_course_registration_sys_rish.ui.gallery
+package com.example.fju_course_registration_sys_rish.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.fju_course_registration_sys_rish.R
 
-class GalleryFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        searchViewModel =
+            ViewModelProviders.of(this).get(SearchViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.text_search)
-        galleryViewModel.text.observe(this, Observer {
+        searchViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
