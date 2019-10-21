@@ -21,4 +21,9 @@
     <string name="menu_send">Send</string>
 
     <string name="welcome">Welcome to RISH</string>
+    <string name="Course_Name">Course Name</string>
+    <string name="Professor_Name">Professor</string>
+    <string name="Day">Day</string>
+    <string name="Duration">Duration</string>
+
 </resources>
