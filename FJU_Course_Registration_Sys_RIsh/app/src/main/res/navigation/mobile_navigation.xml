@@ -18,16 +18,16 @@
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.fju_course_registration_sys_rish.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_course"
+        android:name="com.example.fju_course_registration_sys_rish.ui.course.CourseFragment"
+        android:label="@string/menu_course"
+        tools:layout="@layout/fragment_course" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.fju_course_registration_sys_rish.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_curriculum"
+        android:name="com.example.fju_course_registration_sys_rish.ui.curriculum.CurriculumFragment"
+        android:label="@string/menu_curriculum"
+        tools:layout="@layout/fragment_curriculum" />
 
     <fragment
         android:id="@+id/nav_share"
