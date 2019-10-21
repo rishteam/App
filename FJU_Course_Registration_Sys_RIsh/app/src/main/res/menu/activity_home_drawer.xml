@@ -20,6 +20,11 @@
             android:id="@+id/nav_curriculum"
             android:icon="@drawable/ic_menu_curriculum"
             android:title="@string/menu_curriculum" />
+        <item
+            android:id="@+id/nav_recommend"
+            android:icon="@drawable/ic_menu_recommend"
+            android:title="@string/menu_recommend" />
+
     </group>
 
     <item android:title="Communicate">
