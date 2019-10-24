@@ -26,4 +26,6 @@
     <string name="Day">Day</string>
     <string name="Duration">Duration</string>
 
+    <string name="filter">filter</string>
+
 </resources>

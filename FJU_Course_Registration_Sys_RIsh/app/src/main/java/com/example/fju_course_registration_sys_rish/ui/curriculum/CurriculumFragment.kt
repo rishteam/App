@@ -22,10 +22,10 @@ class CurriculumFragment : Fragment() {
         curriculumViewModel =
             ViewModelProviders.of(this).get(CurriculumViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_curriculum, container, false)
-        val textView: TextView = root.findViewById(R.id.text_curriculum)
-        curriculumViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+//        val textView: TextView = root.findViewById(R.id.text_curriculum)
+//        curriculumViewModel.text.observe(this, Observer {
+//            textView.text = it
+//        })
         return root
     }
 }
