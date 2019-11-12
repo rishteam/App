@@ -28,4 +28,20 @@
 
     <string name="filter">filter</string>
 
+    <string name="Mon">Mon</string>
+    <string name="Tue">Tue</string>
+    <string name="Wed">Wed</string>
+    <string name="Thu">Thu</string>
+    <string name="Fri">Fri</string>
+    <string name="knot_1">一</string>
+    <string name="knot_2">二</string>
+    <string name="knot_3">三</string>
+    <string name="knot_4">四</string>
+    <string name="knot_5">五</string>
+    <string name="knot_6">六</string>
+    <string name="knot_7">七</string>
+    <string name="knot_8">八</string>
+    <string name="knot_9">九</string>
+
+
 </resources>
