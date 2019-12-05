@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.i("hello", "hello")
         Login.setOnClickListener(this)
         Registration.setOnClickListener(this)
 
