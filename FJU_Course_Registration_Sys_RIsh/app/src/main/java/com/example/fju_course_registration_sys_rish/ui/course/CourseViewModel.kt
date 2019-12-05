@@ -23,50 +23,81 @@ class CourseViewModel : ViewModel() {
 
     val fakeData : MutableList<Course> = mutableListOf()
     val fake     : MutableList<Course> = mutableListOf()
-    val course : MutableLiveData<Course> by lazy {
+    val url = "http://vm.rish.com.tw/db/v1/schools"
+    val json : JSONObject = JSONObject()
+    val courseList : MutableList<Course> = arrayListOf()
+    var loadFinish : Boolean = false
+    var loading    : Boolean = false
 
-        MutableLiveData<Course>().also {
 
-            Log.i("test", "init")
-        }
-    }
+
+//    val courseList : MutableLiveData<Course> by lazy {
+//
+//        MutableLiveData<Course>().also {
+//
+//            Log.i("test", "init")
+//        }
+//    }
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is course Fragment"
     }
 
 
-    fun sendGet(result: LinearLayout) {
+    fun loadData(result: LinearLayout) {
 
-        val queue: RequestQueue = Volley.newRequestQueue(result.context)
-        val url = "http://vm.rish.com.tw/db/v1/schools"
-        val i = Log.i("sendGet", "inSendGet")
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
-            Response.Listener { response ->
+        Log.i("loadData", "in function loadData")
 
-                Log.i("sendGet", "am I in?")
-                Log.i("sendGet", response.toString())
-            }, Response.ErrorListener {
+        val que = Volley.newRequestQueue(result.context)
+        val req = JsonArrayRequest(Request.Method.GET, url, null,
+            Response.Listener<JSONArray> {
+                    response ->
 
-                fun onErrorResponse(error: VolleyError) {
+                Log.i("oaa", response.length().toString())
+                Log.i("oao", response.toString())
+                for(i in 0 until response.length()){
 
-                    Log.e("sendGet", "error")
+                    val course = Course()
+                    Log.i("loadData", response.getJSONObject(i).toString())
+                    course.parseData(response.getJSONObject(i))
+                    courseList.add(course)
+                    Log.i("1234456", courseList[i].schoolName + i.toString())
                 }
+                Log.i("setLoad", "toSet")
+//                    setLoadFinish()
+                Log.i("len5", courseList.size.toString())
+
+            },
+            Response.ErrorListener { error->
+
+                Log.i("eeeeeeee", "fuck")
+                Log.e("stupid", error.toString())
             })
-        queue.add(jsonObjectRequest)
+        que.add(req)
+        loading = false
 
+//        store(aaa)
     }
 
-    fun getCourse() : LiveData<Course> {
+    fun store(response: JSONArray){
 
-        Log.i("test", "getCourse")
-        return course
+        val course = Course()
+        for(i in 0 until response.length()){
+
+//                    Log.i("loadData", response.getJSONObject(i).toString())
+            course.parseData(response.getJSONObject(i))
+            courseList.add(course)
+            Log.i("opo", courseList[i].schoolName + i.toString())
+        }
+        Log.i("len", courseList[0].schoolName)
     }
 
-    fun getString() : String {
+//    fun getCourse() : LiveData<Course> {
+//
+//        Log.i("test", "getCourse")
+//        return course
+//    }
 
-        return "getString"
-    }
     fun fakeLoad(){
 
         for(i in 0 until 10){
@@ -98,6 +129,16 @@ class CourseViewModel : ViewModel() {
 //        course.postValue(tmp)
     }
 
+    fun getUName(i: Int): String {
+
+        return courseList[i].schoolName
+    }
+
+    fun getID(i: Int): Int {
+
+        return courseList[i].id
+    }
+
     fun getCourseName(i: Int): String {
 
         Log.i("load" , "CourseName")
@@ -123,8 +164,14 @@ class CourseViewModel : ViewModel() {
         return fake[i].day
     }
 
+    fun isLoading(): Boolean {
+
+        return loading
+    }
+
     fun getDataLen(): Int{
 
-        return fake.size
+        Log.i("getDataLen", "return Data len" + " " + courseList.size.toString())
+        return courseList.size
     }
 }
