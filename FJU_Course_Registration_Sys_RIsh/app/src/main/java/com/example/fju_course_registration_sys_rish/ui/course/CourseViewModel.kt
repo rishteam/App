@@ -44,39 +44,21 @@ class CourseViewModel : ViewModel() {
     }
 
 
-    fun loadData(result: LinearLayout) {
+    fun loadData(response: JSONArray) {
 
         Log.i("loadData", "in function loadData")
 
-        val que = Volley.newRequestQueue(result.context)
-        val req = JsonArrayRequest(Request.Method.GET, url, null,
-            Response.Listener<JSONArray> {
-                    response ->
+        for(i in 0 until response.length()){
 
-                Log.i("oaa", response.length().toString())
-                Log.i("oao", response.toString())
-                for(i in 0 until response.length()){
-
-                    val course = Course()
-                    Log.i("loadData", response.getJSONObject(i).toString())
-                    course.parseData(response.getJSONObject(i))
-                    courseList.add(course)
-                    Log.i("1234456", courseList[i].schoolName + i.toString())
-                }
-                Log.i("setLoad", "toSet")
+            val course = Course()
+            Log.i("loadData", response.getJSONObject(i).toString())
+            course.parseData(response.getJSONObject(i))
+            courseList.add(course)
+            Log.i("1234456", courseList[i].schoolName + i.toString())
+        }
+        Log.i("setLoad", "toSet")
 //                    setLoadFinish()
-                Log.i("len5", courseList.size.toString())
-
-            },
-            Response.ErrorListener { error->
-
-                Log.i("eeeeeeee", "fuck")
-                Log.e("stupid", error.toString())
-            })
-        que.add(req)
-        loading = false
-
-//        store(aaa)
+        Log.i("len5", courseList.size.toString())
     }
 
     fun store(response: JSONArray){
