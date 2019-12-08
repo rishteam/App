@@ -1,23 +1,10 @@
 package com.example.fju_course_registration_sys_rish.ui.course
 
 import android.util.Log
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.*
-import com.example.fju_course_registration_sys_rish.R
-import kotlinx.android.synthetic.main.fragment_course.view.*
 import org.json.JSONArray
 import org.json.JSONObject
-import java.net.HttpURLConnection
-import java.net.URL
 
 class CourseViewModel : ViewModel() {
 
@@ -28,20 +15,6 @@ class CourseViewModel : ViewModel() {
     val courseList : MutableList<Course> = arrayListOf()
     var loadFinish : Boolean = false
     var loading    : Boolean = false
-
-
-
-//    val courseList : MutableLiveData<Course> by lazy {
-//
-//        MutableLiveData<Course>().also {
-//
-//            Log.i("test", "init")
-//        }
-//    }
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is course Fragment"
-    }
 
 
     fun loadData(response: JSONArray) {
@@ -80,36 +53,6 @@ class CourseViewModel : ViewModel() {
 //        return course
 //    }
 
-    fun fakeLoad(){
-
-        for(i in 0 until 10){
-
-            val tmp = Course()
-            tmp.loadData(i)//for test
-            fakeData.add(tmp)
-        }
-        Log.i("fakeLoad", "Load success")
-    }
-
-    fun loadCourse(CName: String, PName: String, D_fil: String, Dur: String){
-
-        Log.i("loadCourse", "load")
-
-        for(i in 0 until 10){
-
-//            val tmp = Course()
-//            tmp.loadData(i)//for test
-//            fakeData.add(tmp)
-
-
-                Log.i("filter", "success")
-                fake.add(fakeData[i])
-
-
-        }
-
-//        course.postValue(tmp)
-    }
 
     fun getUName(i: Int): String {
 
@@ -149,6 +92,11 @@ class CourseViewModel : ViewModel() {
     fun isLoading(): Boolean {
 
         return loading
+    }
+
+    fun getList() : MutableList<Course>{
+
+        return courseList
     }
 
     fun getDataLen(): Int{

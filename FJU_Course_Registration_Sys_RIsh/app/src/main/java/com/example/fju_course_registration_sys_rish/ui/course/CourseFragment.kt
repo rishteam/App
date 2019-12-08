@@ -12,6 +12,8 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.android.volley.Request
 import com.android.volley.Response
@@ -39,7 +41,8 @@ class CourseFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_course, container, false)
 
         val button = root.findViewById(R.id.filter) as MaterialButton
-        var result = root.findViewById(R.id.result) as LinearLayout
+        val result = root.findViewById(R.id.result) as LinearLayout
+        val listView = root.findViewById(R.id.listView) as RecyclerView
 //        val test   = root.findViewById(R.id.test)   as ScrollView
 
         Log.i("child", "HI")
@@ -57,34 +60,24 @@ class CourseFragment : Fragment() {
                         Log.i("response", response.toString())
 
                         courseViewModel.loadData(response)
-                        Log.i("LoadData", "LoadDataFinish")
+                        Log.i("LoadData", courseViewModel.getList().toString())
                         Log.i("uuu", courseViewModel.getDataLen().toString())
 
-
-                        val listView = ListView(result.context)
-
+//
+//                        val listView = ListView(result.context)
+//                        listView.id = View.generateViewId()
 //                        listView = root.findViewById<ListView>(R.id.list)
-                        Log.i("test111", "listView declare")
 
 
                         var UName = ""
                         var ID    = ""
 
-                        val listItems = arrayOfNulls<String>(courseViewModel.getDataLen())
-                        Log.i("test222", "readyTo")
-                        for(i in 0 until courseViewModel.getDataLen()){
-
-                            listItems[i] = courseViewModel.getUName(i)
-//                            Log.i("testttt", courseViewModel.getUName(i))
-                        }
-                        for(i in 0 until courseViewModel.getDataLen()){
-
-                            Log.i("test333", listItems[i])
-                        }
-                        val adapter = ArrayAdapter(result.context, android.R.layout.simple_list_item_1, listItems)
-                        listView.adapter = adapter
-
-
+                        listView.layoutManager = LinearLayoutManager(result.context)
+                        listView.adapter = RecyclerListViewAdapter(courseViewModel.getList())
+//                        val adapter = ArrayAdapter(result.context, android.R.layout.simple_list_item_1, listItems)
+//                        listView.adapter = adapter
+//
+//
                         result.addView(listView)
 //                        for(i in 0 until courseViewModel.getDataLen()){
 //
