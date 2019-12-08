@@ -21,7 +21,6 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 
-
 class CourseFragment : Fragment() {
 
     private lateinit var courseViewModel: CourseViewModel
@@ -51,6 +50,9 @@ class CourseFragment : Fragment() {
                 val req = JsonArrayRequest(Request.Method.GET, url, null,
                     Response.Listener<JSONArray> {
                             response ->
+
+                        result.removeAllViews()
+                        result.refreshDrawableState()
 
                         Log.i("response", response.toString())
 
@@ -109,10 +111,7 @@ class CourseFragment : Fragment() {
                         Log.e("ResponseError", error.toString())
                     })
                 que.add(req)
-
-                Log.i("test", "click")
             }
-
         })
         return root
     }

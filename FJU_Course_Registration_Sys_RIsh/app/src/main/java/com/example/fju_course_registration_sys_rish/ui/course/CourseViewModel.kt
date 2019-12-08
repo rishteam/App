@@ -47,7 +47,7 @@ class CourseViewModel : ViewModel() {
     fun loadData(response: JSONArray) {
 
         Log.i("loadData", "in function loadData")
-
+        courseList.clear()
         for(i in 0 until response.length()){
 
             val course = Course()
