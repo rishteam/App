@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?){

@@ -10,10 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1.0"
             android:gravity="center"
             android:orientation="vertical">
@@ -118,7 +119,7 @@
                 android:id="@+id/filter"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="96dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:text="@string/filter"
@@ -131,27 +132,32 @@
 
         </LinearLayout>
 
+<!--        <ScrollView-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="290dp">-->
+
+
         <LinearLayout
+            android:id="@+id/result"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_weight="1.0">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            android:layout_height="275dp"
+            android:orientation="vertical">
 
 
-                </LinearLayout>
-
-            </ScrollView>
-
+            <!--                <ListView-->
+            <!--                    android:id="@+id/list"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="0dp"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    />-->
         </LinearLayout>
+
+<!--        </ScrollView>-->
+
 
     </LinearLayout>
 
