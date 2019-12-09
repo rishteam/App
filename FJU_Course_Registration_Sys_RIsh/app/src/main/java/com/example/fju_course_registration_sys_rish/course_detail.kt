@@ -19,6 +19,5 @@ class course_detail : AppCompatActivity() {
         id.text = course!!.schoolName
         Uname.text = course.id.toString()
 
-
     }
 }

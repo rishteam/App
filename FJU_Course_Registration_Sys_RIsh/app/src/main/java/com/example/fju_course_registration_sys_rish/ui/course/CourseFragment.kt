@@ -25,8 +25,9 @@ import org.json.JSONArray
 class CourseFragment : Fragment() {
 
     private lateinit var courseViewModel: CourseViewModel
-    val url = "http://vm.rish.com.tw/db/v1/schools"
+//    val url = "http://vm.rish.com.tw/db/v1/fju_course?"
 //    private var course         : MutableList<Course> = ArrayList()
+    var url = ""
 
     //http://vm.rish.com.tw/db/v1/schools
 
@@ -43,14 +44,22 @@ class CourseFragment : Fragment() {
         val button = root.findViewById(R.id.filter) as MaterialButton
         val result = root.findViewById(R.id.result) as LinearLayout
         val listView = root.findViewById(R.id.listView) as RecyclerView
+
 //        val test   = root.findViewById(R.id.test)   as ScrollView
 
         Log.i("child", "HI")
         button.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
 
+                val inputCourse = Course_name.text.toString()
+                val inputProfessor = Professor.text.toString()
+                if(inputCourse?.length == 0)
+                    Log.i("inputTest", "22222222")
+
+                url = courseViewModel.getURL(inputCourse, inputProfessor)
+
                 val que = Volley.newRequestQueue(result.context)
-                val req = JsonArrayRequest(Request.Method.GET, url, null,
+                val req = JsonArrayRequest(Request.Method.POST, url, null,
                     Response.Listener<JSONArray> {
                             response ->
 
@@ -63,58 +72,13 @@ class CourseFragment : Fragment() {
                         Log.i("LoadData", courseViewModel.getList().toString())
                         Log.i("uuu", courseViewModel.getDataLen().toString())
 
-//
-//                        val listView = ListView(result.context)
-//                        listView.id = View.generateViewId()
-//                        listView = root.findViewById<ListView>(R.id.list)
-
-
                         var UName = ""
                         var ID    = ""
 
                         listView.layoutManager = LinearLayoutManager(result.context)
                         listView.adapter = RecyclerListViewAdapter(courseViewModel.getList(), result.context)
-//                        val adapter = ArrayAdapter(result.context, android.R.layout.simple_list_item_1, listItems)
-//                        listView.adapter = adapter
-//
-//
+
                         result.addView(listView)
-//                        for(i in 0 until courseViewModel.getDataLen()){
-//
-//                            val cardView = CardView(result.context)
-//                            val cardTextLayout = LinearLayout(result.context)
-//
-//                            val universityName = TextView(result.context)
-//                            val universityID   = TextView(result.context)
-//                            val cardViewParams = LinearLayout.LayoutParams(
-//                                LinearLayout.LayoutParams.MATCH_PARENT,
-//                                400
-//                            )
-//
-//                            cardView.setCardBackgroundColor(Color.parseColor("#000000"))
-//                            cardView.setContentPadding(36,36,36,36)
-//                            cardView.layoutParams
-//                            cardView.layoutParams = cardViewParams
-//
-//                            val parms = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                            parms.leftMargin = 10
-//                            parms.rightMargin = 10
-//
-//                            cardTextLayout.orientation = LinearLayout.HORIZONTAL
-//                            cardTextLayout.gravity = Gravity.CENTER
-//
-//                            universityName.text = courseViewModel.getUName(i)
-//                            universityName.textSize = 24f
-//                            universityName.layoutParams = parms
-//                            universityID.text = courseViewModel.getID(i).toString()
-//                            universityID.textSize = 24f
-//                            universityID.layoutParams = parms
-//
-//                            cardTextLayout.addView(universityID)
-//                            cardTextLayout.addView(universityName)
-//                            cardView.addView(cardTextLayout)
-//                            result.addView(cardView)
-//                        }
                     },
                     Response.ErrorListener { error->
 

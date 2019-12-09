@@ -11,7 +11,7 @@ class Course : Serializable{
     var professor  : String = ""
     var day        : String = ""
     var duration   : String = ""
-    var id         : Int = -1
+    var id         : String = ""
     var testIdx    : Int = 0
 
     init {
@@ -21,24 +21,15 @@ class Course : Serializable{
         professor  = ""
         day        = ""
         duration   = ""
-        id         = -1
+        id         = ""
     }
 
     fun parseData(jsonObject: JSONObject){
 
         Log.i("Class", jsonObject.toString())
         schoolName = jsonObject.getString("name")
-        id         = jsonObject.getInt("id")
+        id         = jsonObject.getString("course_code")
+        professor  = jsonObject.getString("teacher")
     }
-
-    fun loadData(test : Int){
-
-        courseName = "Pawn" + test.toString()
-        professor = "Roy" + test.toString()
-        day = test.toString()
-        duration = "D3-D4"
-        testIdx++
-    }
-
 }
 

@@ -10,7 +10,11 @@
         android:id="@+id/fragment_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -135,12 +139,10 @@
         </LinearLayout>
 
 
-
-
         <!--        <ScrollView-->
-<!--            android:id="@+id/test"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="290dp">-->
+        <!--            android:id="@+id/test"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="290dp">-->
 
 
         <LinearLayout
@@ -164,7 +166,7 @@
         <!--                app:layout_constraintTop_toTopOf="parent"-->
         <!--                />-->
 
-<!--        </ScrollView>-->
+        <!--        </ScrollView>-->
 
 
     </LinearLayout>

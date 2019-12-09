@@ -10,7 +10,7 @@ class CourseViewModel : ViewModel() {
 
     val fakeData : MutableList<Course> = mutableListOf()
     val fake     : MutableList<Course> = mutableListOf()
-    val url = "http://vm.rish.com.tw/db/v1/schools"
+//    var url = "http://vm.rish.com.tw/db/v1/fju_course?"
     val json : JSONObject = JSONObject()
     val courseList : MutableList<Course> = arrayListOf()
     var loadFinish : Boolean = false
@@ -27,39 +27,26 @@ class CourseViewModel : ViewModel() {
             Log.i("loadData", response.getJSONObject(i).toString())
             course.parseData(response.getJSONObject(i))
             courseList.add(course)
-            Log.i("1234456", courseList[i].schoolName + i.toString())
         }
-        Log.i("setLoad", "toSet")
-//                    setLoadFinish()
-        Log.i("len5", courseList.size.toString())
     }
+    fun getURL(courseName : String, ProfessorName: String) : String{
 
-    fun store(response: JSONArray){
+        var url = "http://vm.rish.com.tw/db/v1/fju_course?"
+        if(ProfessorName.length > 0)
+            url += "teacher="+ProfessorName+"&"
+        if(courseName.length > 0)
+            url += "department" + courseName + "&"
 
-        val course = Course()
-        for(i in 0 until response.length()){
+        return url
 
-//                    Log.i("loadData", response.getJSONObject(i).toString())
-            course.parseData(response.getJSONObject(i))
-            courseList.add(course)
-            Log.i("opo", courseList[i].schoolName + i.toString())
-        }
-        Log.i("len", courseList[0].schoolName)
     }
-
-//    fun getCourse() : LiveData<Course> {
-//
-//        Log.i("test", "getCourse")
-//        return course
-//    }
-
 
     fun getUName(i: Int): String {
 
         return courseList[i].schoolName
     }
 
-    fun getID(i: Int): Int {
+    fun getID(i: Int): String {
 
         return courseList[i].id
     }

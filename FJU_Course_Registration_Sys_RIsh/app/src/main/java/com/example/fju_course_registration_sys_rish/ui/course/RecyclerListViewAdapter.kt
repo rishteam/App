@@ -26,6 +26,7 @@ class RecyclerListViewAdapter(private val course : MutableList<Course>, private 
         Log.i("adapter", "onBind")
         holder.textViewID.text = course[position].id.toString()
         holder.textViewUname.text = course[position].schoolName
+        holder.textViewProfessor.text = course[position].professor
 
 
         holder.itemView.setOnClickListener{
@@ -47,5 +48,6 @@ class RecyclerListViewAdapter(private val course : MutableList<Course>, private 
 
         val textViewID : TextView = view.findViewById(R.id.id)
         val textViewUname : TextView = view.findViewById(R.id.Uname)
+        val textViewProfessor: TextView = view.findViewById(R.id.ProfessorName)
     }
 }
