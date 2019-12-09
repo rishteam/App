@@ -2,8 +2,9 @@ package com.example.fju_course_registration_sys_rish.ui.course
 
 import android.util.Log
 import org.json.JSONObject
+import java.io.Serializable
 
-class Course {
+class Course : Serializable{
 
     var schoolName : String = ""
     var courseName : String = ""

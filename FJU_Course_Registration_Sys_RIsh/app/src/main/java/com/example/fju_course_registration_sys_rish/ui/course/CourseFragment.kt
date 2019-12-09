@@ -73,7 +73,7 @@ class CourseFragment : Fragment() {
                         var ID    = ""
 
                         listView.layoutManager = LinearLayoutManager(result.context)
-                        listView.adapter = RecyclerListViewAdapter(courseViewModel.getList())
+                        listView.adapter = RecyclerListViewAdapter(courseViewModel.getList(), result.context)
 //                        val adapter = ArrayAdapter(result.context, android.R.layout.simple_list_item_1, listItems)
 //                        listView.adapter = adapter
 //
