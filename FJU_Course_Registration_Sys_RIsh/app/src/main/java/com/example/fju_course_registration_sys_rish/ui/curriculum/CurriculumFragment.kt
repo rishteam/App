@@ -1,16 +1,26 @@
 package com.example.fju_course_registration_sys_rish.ui.curriculum
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.fju_course_registration_sys_rish.R
 import kotlinx.android.synthetic.main.fragment_curriculum.*
 import kotlinx.android.synthetic.main.fragment_send.view.*
+import org.json.JSONArray
 
 class CurriculumFragment : Fragment() {
 
@@ -45,16 +55,44 @@ class CurriculumFragment : Fragment() {
             courseText.add(courseTmp)
         }
 
-        curriculumViewModel.set_user()
-        val coursequantity = curriculumViewModel.getQuantity()
-        for(i in 0 until coursequantity){
-            val weekend = curriculumViewModel.getDate(i)-1
-            val start = curriculumViewModel.getStart(i)-1
-            val end = curriculumViewModel.getEnd(i)
-            for(j in start until end){
-                courseText[weekend][j].setText(curriculumViewModel.getName(i))
+
+        val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
+        val grade = "1081"
+        val url = "http://vm.rish.com.tw/db/v1/users/406262515/curriculums/1081"
+        val que = Volley.newRequestQueue(curr.context)
+
+        val req = object : JsonObjectRequest(Request.Method.GET, url,null,
+            Response.Listener { response ->
+                Log.i("ResponseSucces", "Response is: " + response.toString())
+                Log.i("ResponseK", "Success")
+                curriculumViewModel.set_user(response.getJSONArray(grade))
+
+                val coursequantity = curriculumViewModel.getQuantity()
+                Log.i("lengthCQ",coursequantity.toString())
+                for(i in 0 until coursequantity){
+                    val weekend = curriculumViewModel.getDate(i)-1
+                    val start = curriculumViewModel.getStart(i)-1
+                    val end = curriculumViewModel.getEnd(i)
+                    for(j in start until end){
+                        courseText[weekend][j].setText(curriculumViewModel.getName(i))
+                    }
+                }
+
+            },
+            Response.ErrorListener { error ->
+                Log.i("ResponseK", "Fuck")
+                Log.i("ResponseError", error.toString())
+            })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Digest 3e781fc1106ea93975d2e5273daef839"
+                return headers
             }
         }
+
+        que.add(req)
+
 
         return root
     }
