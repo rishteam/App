@@ -24,16 +24,13 @@
                 android:layout_width="350dp"
                 android:layout_height="60dp"
                 android:focusable="auto"
-                android:hint="@string/Account"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.24000001">
+                android:hint="@string/Account">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Account"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -52,15 +49,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
-                android:hint="@string/PWD"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/Account_label"
-                app:layout_constraintStart_toStartOf="@+id/Account_label"
-                app:layout_constraintTop_toBottomOf="@+id/Account_label"
-                app:layout_constraintVertical_bias="0.29000002">
+                android:hint="@string/PWD">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/PWD"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"

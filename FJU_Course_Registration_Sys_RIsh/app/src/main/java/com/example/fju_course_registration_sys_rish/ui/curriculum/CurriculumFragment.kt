@@ -18,6 +18,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.fju_course_registration_sys_rish.R
+import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapToken
+import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapUser
 import kotlinx.android.synthetic.main.fragment_curriculum.*
 import kotlinx.android.synthetic.main.fragment_send.view.*
 import org.json.JSONArray
@@ -55,10 +57,9 @@ class CurriculumFragment : Fragment() {
             courseText.add(courseTmp)
         }
 
-
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
         val grade = "1081"
-        val url = "http://vm.rish.com.tw/db/v1/users/406262515/curriculums/1081"
+        val url = curriculumViewModel.getUrl(ldapUser,grade)
         val que = Volley.newRequestQueue(curr.context)
 
         val req = object : JsonObjectRequest(Request.Method.GET, url,null,
@@ -86,7 +87,8 @@ class CurriculumFragment : Fragment() {
         {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Digest 3e781fc1106ea93975d2e5273daef839"
+                val authorization = "Digest " + ldapToken
+                headers["Authorization"] = authorization
                 return headers
             }
         }

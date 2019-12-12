@@ -28,6 +28,11 @@ class CurriculumViewModel : ViewModel() {
 
     }
 
+    fun getUrl(ldapId: String, grade:String):String{
+        val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums/"+grade
+        return str
+    }
+
     fun getQuantity() : Int{
         return usercourse.size
     }

@@ -15,6 +15,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapToken
+import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
@@ -63,9 +65,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.i("Login","Success")
                 Log.i("Login",response.toString())
 
-                val token = response.getString("token")
-                Log.i("token",token)
-
+                ldapToken = response.getString("token")
+                ldapUser = account
+                Log.i("tokenget", ldapUser + " " + ldapToken)
                 Toast.makeText(this@MainActivity, "Login Success", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, Home::class.java))
                 finish()
