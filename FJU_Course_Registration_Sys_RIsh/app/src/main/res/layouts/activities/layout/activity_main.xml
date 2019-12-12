@@ -18,6 +18,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fordbg"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="DEBUG"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Account_label"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -29,11 +42,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Account"
-                    android:maxLines="1"
-                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,10 +66,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/PWD"
-                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>

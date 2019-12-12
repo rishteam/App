@@ -33,15 +33,18 @@
     <string name="Wed">Wed</string>
     <string name="Thu">Thu</string>
     <string name="Fri">Fri</string>
-    <string name="knot_1">一</string>
-    <string name="knot_2">二</string>
-    <string name="knot_3">三</string>
-    <string name="knot_4">四</string>
-    <string name="knot_5">五</string>
-    <string name="knot_6">六</string>
-    <string name="knot_7">七</string>
-    <string name="knot_8">八</string>
-    <string name="knot_9">九</string>
 
+    <string name="knot_1">D1</string>
+    <string name="knot_2">D2</string>
+    <string name="knot_3">D3</string>
+    <string name="knot_4">D4</string>
+    <string name="knot_5">D5</string>
+    <string name="knot_6">D6</string>
+    <string name="knot_7">D7</string>
+    <string name="knot_8">D8</string>
+    <string name="knot_9">D9</string>
+    <string name="knot_10">E1</string>
+    <string name="knot_11">E2</string>
+    <string name="knot_12">E3</string>
 
 </resources>

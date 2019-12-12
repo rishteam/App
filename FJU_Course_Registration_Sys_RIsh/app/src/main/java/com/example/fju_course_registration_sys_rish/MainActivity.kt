@@ -1,6 +1,7 @@
 package com.example.fju_course_registration_sys_rish
 
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,11 @@ import kotlinx.android.synthetic.main.nav_header_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
 import org.json.JSONArray
 import org.json.JSONObject
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,9 +37,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
 
             R.id.Login -> toHomePage()
-//            R.id.Registration -> toRegisterPage()
+            R.id.fordbg -> toHome()
 
         }
+
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +54,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         Login.setOnClickListener(this)
-//        Registration.setOnClickListener(this)
+        fordbg.setOnClickListener(this)
+        Login_page.setOnClickListener(this)
 
     }
 
@@ -83,11 +97,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-//    private fun toRegisterPage(){
-//
-//        Log.i("Tag", "toRegisterPage")
-//        Toast.makeText(this@MainActivity, "Register Success", Toast.LENGTH_SHORT).show()
-//
-//    }
+    private fun toHome(){
+
+        Toast.makeText(this@MainActivity, "For Debug Login", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, Home::class.java))
+        finish()
+
+    }
 
 }
