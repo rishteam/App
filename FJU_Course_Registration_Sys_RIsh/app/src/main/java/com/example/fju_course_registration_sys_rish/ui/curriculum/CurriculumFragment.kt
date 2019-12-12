@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -58,31 +60,71 @@ class CurriculumFragment : Fragment() {
         }
 
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
-        val grade = "1081"
-        val url = curriculumViewModel.getUrl(ldapUser,grade)
         val que = Volley.newRequestQueue(curr.context)
+        val urlGra = curriculumViewModel.getGraUrl(ldapUser)
+        val gradeTable :MutableList<String> = arrayListOf()
 
-        val req = object : JsonObjectRequest(Request.Method.GET, url,null,
+        val reqGra = object : JsonObjectRequest(Request.Method.GET, urlGra,null,
             Response.Listener { response ->
-                Log.i("ResponseSucces", "Response is: " + response.toString())
-                Log.i("ResponseK", "Success")
-                curriculumViewModel.set_user(response.getJSONArray(grade))
+                Log.i("ResponseGra", "Response is: " + response.toString())
+                Log.i("ResponseK", "Gra Success")
+                val gradeJson = response.getJSONArray("year")
 
-                val coursequantity = curriculumViewModel.getQuantity()
-                Log.i("lengthCQ",coursequantity.toString())
-                for(i in 0 until coursequantity){
-                    val weekend = curriculumViewModel.getDate(i)-1
-                    val start = curriculumViewModel.getStart(i)-1
-                    val end = curriculumViewModel.getEnd(i)
-                    for(j in start until end){
-                        courseText[weekend][j].setText(curriculumViewModel.getName(i))
+                for(i in 0 until gradeJson.length()){
+                    gradeTable.add(gradeJson[i].toString())
+                }
+                val adapter = ArrayAdapter(curr.context, android.R.layout.simple_spinner_dropdown_item,gradeTable)
+                gradeSelect.adapter = adapter
+
+                gradeSelect.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        Log.i("ResponseGra","Nothing Select")
                     }
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                        Log.i("ResponseGra", "Select: " +gradeTable[pos])
+                        val grade = gradeTable[pos]
+
+                        val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
+                        val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
+                            Response.Listener { response ->
+                                Log.i("ResponseSucces", "Response is: " + response.toString())
+                                Log.i("ResponseK", "Cur Success")
+                                curriculumViewModel.setUser(response.getJSONArray(grade))
+
+                                val coursequantity = curriculumViewModel.getQuantity()
+                                Log.i("lengthCQ",coursequantity.toString())
+                                for(i in 0 until coursequantity){
+                                    val weekend = curriculumViewModel.getDate(i)-1
+                                    val start = curriculumViewModel.getStart(i)-1
+                                    val end = curriculumViewModel.getEnd(i)
+                                    for(j in start until end){
+                                        courseText[weekend][j].setText(curriculumViewModel.getName(i))
+                                    }
+                                }
+
+                            },
+                            Response.ErrorListener { error ->
+                                Log.i("ResponseK", "Cur Fuck")
+                                Log.i("ResponseError", error.toString())
+                            })
+                        {
+                            override fun getHeaders(): MutableMap<String, String> {
+                                val headers = HashMap<String, String>()
+                                val authorization = "Digest " + ldapToken
+                                headers["Authorization"] = authorization
+                                return headers
+                            }
+                        }
+
+                        que.add(reqCur)
+                    }
+
                 }
 
             },
             Response.ErrorListener { error ->
-                Log.i("ResponseK", "Fuck")
-                Log.i("ResponseError", error.toString())
+                Log.i("ResponseK", "Gra Fuck")
+                Log.i("ResponseGra","ERROR:"+error.toString())
             })
         {
             override fun getHeaders(): MutableMap<String, String> {
@@ -93,9 +135,53 @@ class CurriculumFragment : Fragment() {
             }
         }
 
-        que.add(req)
+        que.add(reqGra)
 
+
+//        val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
+//        val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
+//            Response.Listener { response ->
+//                Log.i("ResponseSucces", "Response is: " + response.toString())
+//                Log.i("ResponseK", "Cur Success")
+//                curriculumViewModel.setUser(response.getJSONArray(grade))
+//
+//                val coursequantity = curriculumViewModel.getQuantity()
+//                Log.i("lengthCQ",coursequantity.toString())
+//                for(i in 0 until coursequantity){
+//                    val weekend = curriculumViewModel.getDate(i)-1
+//                    val start = curriculumViewModel.getStart(i)-1
+//                    val end = curriculumViewModel.getEnd(i)
+//                    for(j in start until end){
+//                        courseText[weekend][j].setText(curriculumViewModel.getName(i))
+//                    }
+//                }
+//
+//            },
+//            Response.ErrorListener { error ->
+//                Log.i("ResponseK", "Cur Fuck")
+//                Log.i("ResponseError", error.toString())
+//            })
+//        {
+//            override fun getHeaders(): MutableMap<String, String> {
+//                val headers = HashMap<String, String>()
+//                val authorization = "Digest " + ldapToken
+//                headers["Authorization"] = authorization
+//                return headers
+//            }
+//        }
+//
+//        que.add(reqCur)
 
         return root
     }
+
+
+
+
+
+
+
+
+
+
 }

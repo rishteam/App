@@ -15,7 +15,7 @@ class CurriculumViewModel : ViewModel() {
 
     val usercourse : MutableList<UserCourse> = arrayListOf()
 
-    fun set_user(response: JSONArray) {
+    fun setUser(response: JSONArray) {
 
         Log.i("set_user", "in function set_user")
         usercourse.clear()
@@ -28,8 +28,13 @@ class CurriculumViewModel : ViewModel() {
 
     }
 
-    fun getUrl(ldapId: String, grade:String):String{
+    fun getCurUrl(ldapId: String, grade:String):String{
         val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums/"+grade
+        return str
+    }
+
+    fun getGraUrl(ldapId: String):String{
+        val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums"
         return str
     }
 
