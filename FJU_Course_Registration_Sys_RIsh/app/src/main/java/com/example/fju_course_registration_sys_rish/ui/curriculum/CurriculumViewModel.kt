@@ -1,8 +1,10 @@
 package com.example.fju_course_registration_sys_rish.ui.curriculum
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.json.JSONArray
 
 class CurriculumViewModel : ViewModel() {
 
@@ -13,25 +15,27 @@ class CurriculumViewModel : ViewModel() {
 
     val usercourse : MutableList<UserCourse> = arrayListOf()
 
-    fun set_user() {
-        val tmp = UserCourse()
-        tmp.courseName = "Fuck"
-        tmp.courseDate = 2
-        tmp.startT = 4
-        tmp.endT = 6
-        usercourse.add(tmp)
-        val tmp_2 = UserCourse()
-        tmp_2.courseName = "Shit"
-        tmp_2.courseDate = 3
-        tmp_2.startT = 2
-        tmp_2.endT = 3
-        usercourse.add(tmp_2)
-        val tmp_3 = UserCourse()
-        tmp_3.courseName = "Test"
-        tmp_3.courseDate = 4
-        tmp_3.startT = 4
-        tmp_3.endT = 5
-        usercourse.add(tmp_3)
+    fun setUser(response: JSONArray) {
+
+        Log.i("set_user", "in function set_user")
+        usercourse.clear()
+
+        for (i in 0 until response.length()){
+            val tmp = UserCourse()
+            tmp.parseData(response.getJSONObject(i))
+            usercourse.add(tmp)
+        }
+
+    }
+
+    fun getCurUrl(ldapId: String, grade:String):String{
+        val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums/"+grade
+        return str
+    }
+
+    fun getGraUrl(ldapId: String):String{
+        val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums"
+        return str
     }
 
     fun getQuantity() : Int{
