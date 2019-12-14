@@ -8,14 +8,7 @@ import org.json.JSONObject
 
 class CourseViewModel : ViewModel() {
 
-    val fakeData : MutableList<Course> = mutableListOf()
-    val fake     : MutableList<Course> = mutableListOf()
-//    var url = "http://vm.rish.com.tw/db/v1/fju_course?"
-    val json : JSONObject = JSONObject()
     val courseList : MutableList<Course> = arrayListOf()
-    var loadFinish : Boolean = false
-    var loading    : Boolean = false
-
 
     fun loadData(response: JSONArray) {
 
@@ -41,45 +34,6 @@ class CourseViewModel : ViewModel() {
 
     }
 
-    fun getUName(i: Int): String {
-
-        return courseList[i].schoolName
-    }
-
-    fun getID(i: Int): String {
-
-        return courseList[i].id
-    }
-
-    fun getCourseName(i: Int): String {
-
-        Log.i("load" , "CourseName")
-
-        return fake[i].courseName
-
-    }
-
-    fun getProfessorName(i: Int): String{
-
-        return fake[i].professor
-
-    }
-
-    fun getDuration(i: Int): String{
-
-        return fake[i].duration
-
-    }
-
-    fun getDay(i: Int): String{
-
-        return fake[i].day
-    }
-
-    fun isLoading(): Boolean {
-
-        return loading
-    }
 
     fun getList() : MutableList<Course>{
 

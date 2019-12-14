@@ -25,11 +25,7 @@ import org.json.JSONArray
 class CourseFragment : Fragment() {
 
     private lateinit var courseViewModel: CourseViewModel
-//    val url = "http://vm.rish.com.tw/db/v1/fju_course?"
-//    private var course         : MutableList<Course> = ArrayList()
     var url = ""
-
-    //http://vm.rish.com.tw/db/v1/schools
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +40,6 @@ class CourseFragment : Fragment() {
         val button = root.findViewById(R.id.filter) as MaterialButton
         val result = root.findViewById(R.id.result) as LinearLayout
         val listView = root.findViewById(R.id.listView) as RecyclerView
-
-//        val test   = root.findViewById(R.id.test)   as ScrollView
 
         Log.i("child", "HI")
         button.setOnClickListener(object : View.OnClickListener {
@@ -71,9 +65,6 @@ class CourseFragment : Fragment() {
                         courseViewModel.loadData(response)
                         Log.i("LoadData", courseViewModel.getList().toString())
                         Log.i("uuu", courseViewModel.getDataLen().toString())
-
-                        var UName = ""
-                        var ID    = ""
 
                         listView.layoutManager = LinearLayoutManager(result.context)
                         listView.adapter = RecyclerListViewAdapter(courseViewModel.getList(), result.context)

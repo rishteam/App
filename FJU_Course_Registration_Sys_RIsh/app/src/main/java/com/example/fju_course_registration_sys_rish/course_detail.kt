@@ -17,7 +17,7 @@ class course_detail : AppCompatActivity() {
         val Uname = detail_Uname
 
         id.text = course!!.schoolName
-        Uname.text = course.id.toString()
+        Uname.text = course.course_code
 
     }
 }
