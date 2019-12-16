@@ -71,8 +71,6 @@ class CurriculumFragment : Fragment() {
                     userGra.add(gradeJson[i].toString())
                 }
 
-
-
             },
             Response.ErrorListener { error ->
                 Log.i("ResponseK", "Gra Fuck")
@@ -90,8 +88,6 @@ class CurriculumFragment : Fragment() {
         que.add(reqGra)
 
         for (i in 0 until userGra.size){
-            if( userCurr[userGra[i]] != null )
-                continue
             val grade = userGra[i]
             val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
             val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
@@ -121,64 +117,56 @@ class CurriculumFragment : Fragment() {
 
         Log.i("CheckUserData", userGra.toString())
         for(i in 0 until userGra.size){
-            Log.i("CheckUserData", userGra[i]+": "+userCurr[userGra[i]].toString())
+            Log.i("CheckUserData", userGra[i])
+            val sss = userGra[i]
+            for(j in 0 until (userCurr[sss]?.size ?: 0)){
+                Log.i("CheckUserData", userCurr[sss]?.get(j)?.getName())
+            }
         }
 
-//        val grade : String = userGra[0]
-//        userCurr[grade]?.let { curriculumViewModel.setUserCourse(it) }
-//        val coursequantity = curriculumViewModel.getQuantity()
-//        Log.i("lengthCQ",coursequantity.toString())
-//        for(i in 0 until coursequantity){
-//            val weekend = curriculumViewModel.getDate(i)-1
-//            val start = curriculumViewModel.getStart(i)-1
-//            val end = curriculumViewModel.getEnd(i)
-//            for(j in start until end){
-//                courseText[weekend][j].setText(curriculumViewModel.getName(i))
-//            }
-//        }
+        val con = root.findViewById(R.id.gradeSelect) as Spinner
+        val adapter = ArrayAdapter(con.context, android.R.layout.simple_spinner_dropdown_item, userGra)
+        con.adapter = adapter
+        Log.i("ResponseAdapter", "out $userGra")
+        Log.i("ResponseAdapter", "out $adapter")
+        Log.i("ResponseAdapter", "out $con")
 
-//        userGra.add("fuck")
-//        userGra.add("shit")
-//
-//        val gradeTable :MutableList<String> = arrayListOf()
-//        for(i in 0 until userGra.size )
-//            gradeTable.add(userGra[i])
-//
-//        Log.i("ResponseAdapter", "0")
-//        val adapt = ArrayAdapter(curr.context, android.R.layout.simple_spinner_dropdown_item, gradeTable)
-//        Log.i("ResponseAdapter", "1")
-//        Log.i("ResponseAdapter", userGra.toString())
-//        gradeSelect.adapter = adapt
-//        Log.i("ResponseAdapter", "2")
 
-//        if( userGra.size > 0 ){
+        con.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.i("ResponseCurr","Nothing Select")
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                Log.i("ResponseCurr", "Select: " +userGra[pos])
 
-//            val adapter = ArrayAdapter(gradeSelect.context, android.R.layout.simple_spinner_dropdown_item,userGra)
-//            gradeSelect.adapter = adapter
-//            Log.i("ResponseAdapter", userGra.toString())
+                val grade : String = userGra[pos]
+                val tmpCurr : MutableList<UserCourse> = arrayListOf()
+                if( userCurr[grade] != null ){
+                    Log.i("ResponseCurr", userCurr.size.toString())
+                    for (i in 0 until userCurr.size )
+                        userCurr[grade]?.get(i)?.let { tmpCurr.add(it) }
+                    Log.i("ResponseCurr","userCurr "+grade+ " success")
+                }
+                else {
+                    Log.i("ResponseCurr", "userCurr " + grade + " is null")
+                }
+                val coursequantity = tmpCurr.size
+                Log.i("ResponseCurr",coursequantity.toString())
 
-//            gradeSelect.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//                override fun onNothingSelected(parent: AdapterView<*>?) {
-//                    Log.i("ResponseGra","Nothing Select")
-//                }
-//                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-//                    Log.i("ResponseGra", "Select: " +userGra[pos])
-//
-//                    val grade : String = userGra[pos]
-//                    userCurr[grade]?.let { curriculumViewModel.setUserCourse(it) }
-//                    val coursequantity = curriculumViewModel.getQuantity()
-//                    Log.i("lengthCQ",coursequantity.toString())
-//                    for(i in 0 until coursequantity){
-//                        val weekend = curriculumViewModel.getDate(i)-1
-//                        val start = curriculumViewModel.getStart(i)-1
-//                        val end = curriculumViewModel.getEnd(i)
-//                        for(j in start until end){
-//                            courseText[weekend][j].setText(curriculumViewModel.getName(i))
-//                        }
-//                    }
-//                }
-//            }
-//        }
+                for(i in 0 until 5 )
+                    for(j in 0 until 9)
+                        courseText[i][j].setText("")
+
+                for(i in 0 until coursequantity){
+                    val weekend = tmpCurr[i].getDate()-1
+                    val start = tmpCurr[i].getStart()-1
+                    val end = tmpCurr[i].getEnd()
+                    for(j in start until end){
+                        courseText[weekend][j].setText(tmpCurr[i].getName())
+                    }
+                }
+            }
+        }
 
 
         return root

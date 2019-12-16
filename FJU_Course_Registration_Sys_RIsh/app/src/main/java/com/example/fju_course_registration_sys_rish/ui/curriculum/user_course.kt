@@ -55,6 +55,18 @@ class UserCourse {
 
     }
 
+    fun getStart() : Int {
+        return startT
+    }
+    fun getEnd() : Int {
+        return endT
+    }
+    fun getName() : String {
+        return courseName
+    }
+    fun getDate() : Int {
+        return  courseDate
+    }
 }
 
 

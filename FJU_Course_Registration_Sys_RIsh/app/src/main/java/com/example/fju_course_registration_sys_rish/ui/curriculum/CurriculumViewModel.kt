@@ -46,18 +46,6 @@ class CurriculumViewModel : ViewModel() {
     fun getQuantity() : Int{
         return usercourse.size
     }
-    fun getStart(k:Int) : Int {
-        return usercourse[k].startT
-    }
-    fun getEnd(k:Int) : Int {
-        return usercourse[k].endT
-    }
-    fun getName(k:Int) : String {
-        return usercourse[k].courseName
-    }
-    fun getDate(k:Int) : Int {
-        return  usercourse[k].courseDate
-    }
 
     fun getUserCourse() :MutableList<UserCourse>{
         return usercourse
