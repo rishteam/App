@@ -13,7 +13,7 @@ class CurriculumViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    val usercourse : MutableList<UserCourse> = arrayListOf()
+    var usercourse : MutableList<UserCourse> = arrayListOf()
 
     fun setUser(response: JSONArray) {
 
@@ -26,6 +26,11 @@ class CurriculumViewModel : ViewModel() {
             usercourse.add(tmp)
         }
 
+    }
+
+    fun setUserCourse(course : MutableList<UserCourse> ){
+        usercourse.clear()
+        usercourse = course
     }
 
     fun getCurUrl(ldapId: String, grade:String):String{
@@ -41,17 +46,9 @@ class CurriculumViewModel : ViewModel() {
     fun getQuantity() : Int{
         return usercourse.size
     }
-    fun getStart(k:Int) : Int {
-        return usercourse[k].startT
-    }
-    fun getEnd(k:Int) : Int {
-        return usercourse[k].endT
-    }
-    fun getName(k:Int) : String {
-        return usercourse[k].courseName
-    }
-    fun getDate(k:Int) : Int {
-        return  usercourse[k].courseDate
+
+    fun getUserCourse() :MutableList<UserCourse>{
+        return usercourse
     }
 
 }
