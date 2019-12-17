@@ -57,69 +57,14 @@ class CurriculumFragment : Fragment() {
         }
 
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
-        val que = Volley.newRequestQueue(curr.context)
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
-
-        if ( userGra.size == 0 ){
-            val reqGra = object : JsonObjectRequest(Request.Method.GET, urlGra,null,
-                    Response.Listener { response ->
-                        Log.i("ResponseGra", "Response is: " + response.toString())
-                        Log.i("ResponseK", "Gra Success")
-                        val gradeJson = response.getJSONArray("year")
-
-                        userGra.clear()
-                        for(i in 0 until gradeJson.length()){
-                            userGra.add(gradeJson[i].toString())
-                        }
-
-                    },
-                    Response.ErrorListener { error ->
-                        Log.i("ResponseK", "Gra Fuck")
-                        Log.i("ResponseGra","ERROR:"+error.toString())
-                    })
-            {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val headers = HashMap<String, String>()
-                    val authorization = "Digest " + ldapToken
-                    headers["Authorization"] = authorization
-                    return headers
-                }
-            }
-
-            que.add(reqGra)
-        }
-
+        if ( userGra.size == 0 )
+            getGrade(curr,urlGra)
         for (i in 0 until userGra.size){
-
             val grade = userGra[i]
             val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
-
-            if( userCurr[grade]?.size ?: 0 > 0 )
-                continue
-
-            val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
-                    Response.Listener { response ->
-                        Log.i("ResponseK", "Cur Success")
-                        Log.i("ResponseSucces", "Response is: " + response.toString())
-
-                        curriculumViewModel.setUser(response.getJSONArray(grade))
-                        val tmpUserCourse : MutableList<UserCourse> = curriculumViewModel.getUserCourse()
-                        userCurr.put(grade,tmpUserCourse)
-
-                    },
-                    Response.ErrorListener { error ->
-                        Log.i("ResponseK", "Cur Fuck")
-                        Log.i("ResponseError", error.toString())
-                    })
-            {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val headers = HashMap<String, String>()
-                    val authorization = "Digest " + ldapToken
-                    headers["Authorization"] = authorization
-                    return headers
-                }
-            }
-            que.add(reqCur)
+            if( userCurr[grade]?.size ?: 0 == 0 )
+                getCurr(curr,urlCur,grade)
         }
 
         Log.i("CheckUserData", userGra.toString())
@@ -138,7 +83,6 @@ class CurriculumFragment : Fragment() {
         Log.i("ResponseAdapter", "out $adapter")
         Log.i("ResponseAdapter", "out $gradeSpinner")
 
-
         gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.i("ResponseCurr","Nothing Select")
@@ -156,6 +100,7 @@ class CurriculumFragment : Fragment() {
 
                 val grade : String = userGra[pos]
                 val tmpCurr : MutableList<UserCourse> = arrayListOf()
+                tmpCurr.clear()
                 if( userCurr[grade] != null ){
                     Log.i("ResponseCurr", userCurr[grade]?.size.toString())
                     for (i in 0 until (userCurr[grade]?.size ?: 0)) {
@@ -193,7 +138,63 @@ class CurriculumFragment : Fragment() {
     }
 
 
+    private fun getGrade(curr: LinearLayout,urlGra :String){
+        val que = Volley.newRequestQueue(curr.context)
+        val reqGra = object : JsonObjectRequest(Request.Method.GET, urlGra,null,
+                Response.Listener { response ->
+                    Log.i("ResponseGra", "Response is: " + response.toString())
+                    Log.i("ResponseK", "Gra Success")
+                    val gradeJson = response.getJSONArray("year")
 
+                    userGra.clear()
+                    for(i in 0 until gradeJson.length()){
+                        userGra.add(gradeJson[i].toString())
+                    }
+
+                },
+                Response.ErrorListener { error ->
+                    Log.i("ResponseK", "Gra Fuck")
+                    Log.i("ResponseGra","ERROR:"+error.toString())
+                })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                val authorization = "Digest " + ldapToken
+                headers["Authorization"] = authorization
+                return headers
+            }
+        }
+
+        que.add(reqGra)
+    }
+
+    private  fun getCurr(curr: LinearLayout,urlCur :String,grade: String){
+
+        val que = Volley.newRequestQueue(curr.context)
+        val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
+                Response.Listener { response ->
+                    Log.i("ResponseK", "Cur Success")
+                    Log.i("ResponseSucces", "Response is: " + response.toString())
+
+                    curriculumViewModel.setUser(response.getJSONArray(grade))
+                    val tmpUserCourse : MutableList<UserCourse> = curriculumViewModel.getUserCourse()
+                    userCurr.put(grade,tmpUserCourse)
+
+                },
+                Response.ErrorListener { error ->
+                    Log.i("ResponseK", "Cur Fuck")
+                    Log.i("ResponseError", error.toString())
+                })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                val authorization = "Digest " + ldapToken
+                headers["Authorization"] = authorization
+                return headers
+            }
+        }
+        que.add(reqCur)
+    }
 
 
 
