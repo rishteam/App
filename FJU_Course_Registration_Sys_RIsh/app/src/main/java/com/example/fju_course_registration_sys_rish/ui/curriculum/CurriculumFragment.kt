@@ -60,36 +60,43 @@ class CurriculumFragment : Fragment() {
         val que = Volley.newRequestQueue(curr.context)
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
 
-        val reqGra = object : JsonObjectRequest(Request.Method.GET, urlGra,null,
-            Response.Listener { response ->
-                Log.i("ResponseGra", "Response is: " + response.toString())
-                Log.i("ResponseK", "Gra Success")
-                val gradeJson = response.getJSONArray("year")
+        if ( userGra.size == 0 ){
+            val reqGra = object : JsonObjectRequest(Request.Method.GET, urlGra,null,
+                    Response.Listener { response ->
+                        Log.i("ResponseGra", "Response is: " + response.toString())
+                        Log.i("ResponseK", "Gra Success")
+                        val gradeJson = response.getJSONArray("year")
 
-                userGra.clear()
-                for(i in 0 until gradeJson.length()){
-                    userGra.add(gradeJson[i].toString())
+                        userGra.clear()
+                        for(i in 0 until gradeJson.length()){
+                            userGra.add(gradeJson[i].toString())
+                        }
+
+                    },
+                    Response.ErrorListener { error ->
+                        Log.i("ResponseK", "Gra Fuck")
+                        Log.i("ResponseGra","ERROR:"+error.toString())
+                    })
+            {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    val authorization = "Digest " + ldapToken
+                    headers["Authorization"] = authorization
+                    return headers
                 }
-
-            },
-            Response.ErrorListener { error ->
-                Log.i("ResponseK", "Gra Fuck")
-                Log.i("ResponseGra","ERROR:"+error.toString())
-            })
-        {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                val authorization = "Digest " + ldapToken
-                headers["Authorization"] = authorization
-                return headers
             }
+
+            que.add(reqGra)
         }
 
-        que.add(reqGra)
-
         for (i in 0 until userGra.size){
+
             val grade = userGra[i]
             val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
+
+            if( userCurr[grade]?.size ?: 0 > 0 )
+                continue
+
             val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
                     Response.Listener { response ->
                         Log.i("ResponseK", "Cur Success")
@@ -124,32 +131,43 @@ class CurriculumFragment : Fragment() {
             }
         }
 
-        val con = root.findViewById(R.id.gradeSelect) as Spinner
-        val adapter = ArrayAdapter(con.context, android.R.layout.simple_spinner_dropdown_item, userGra)
-        con.adapter = adapter
+        val gradeSpinner = root.findViewById(R.id.gradeSelect) as Spinner
+        val adapter = ArrayAdapter(gradeSpinner.context, android.R.layout.simple_spinner_dropdown_item, userGra)
+        gradeSpinner.adapter = adapter
         Log.i("ResponseAdapter", "out $userGra")
         Log.i("ResponseAdapter", "out $adapter")
-        Log.i("ResponseAdapter", "out $con")
+        Log.i("ResponseAdapter", "out $gradeSpinner")
 
 
-        con.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.i("ResponseCurr","Nothing Select")
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 Log.i("ResponseCurr", "Select: " +userGra[pos])
 
+                for(i in 0 until userGra.size){
+                    Log.i("CheckUserDataInSpinner", userGra[i])
+                    val sss = userGra[i]
+                    for(j in 0 until (userCurr[sss]?.size ?: 0)){
+                        Log.i("CheckUserDataInSpinner", userCurr[sss]?.get(j)?.getName())
+                    }
+                }
+
                 val grade : String = userGra[pos]
                 val tmpCurr : MutableList<UserCourse> = arrayListOf()
                 if( userCurr[grade] != null ){
-                    Log.i("ResponseCurr", userCurr.size.toString())
-                    for (i in 0 until userCurr.size )
+                    Log.i("ResponseCurr", userCurr[grade]?.size.toString())
+                    for (i in 0 until (userCurr[grade]?.size ?: 0)) {
                         userCurr[grade]?.get(i)?.let { tmpCurr.add(it) }
+                        Log.i("ResponseCurr",tmpCurr[i].toString())
+                    }
                     Log.i("ResponseCurr","userCurr "+grade+ " success")
                 }
                 else {
                     Log.i("ResponseCurr", "userCurr " + grade + " is null")
                 }
+
                 val coursequantity = tmpCurr.size
                 Log.i("ResponseCurr",coursequantity.toString())
 
@@ -165,6 +183,8 @@ class CurriculumFragment : Fragment() {
                         courseText[weekend][j].setText(tmpCurr[i].getName())
                     }
                 }
+
+
             }
         }
 
