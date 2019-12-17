@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fju_course_registration_sys_rish.R
 import com.example.fju_course_registration_sys_rish.course_detail
-import org.w3c.dom.Text
 
 class RecyclerListViewAdapter(private val course : MutableList<Course>, private val context: Context) : RecyclerView.Adapter<RecyclerListViewAdapter.ViewHolder>(){
 
