@@ -40,22 +40,6 @@ class CurriculumFragment : Fragment() {
             ViewModelProviders.of(this).get(CurriculumViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_curriculum, container, false)
 
-        val courseText : MutableList<MutableList<TextView>> = arrayListOf()
-        val courseId = listOf(
-            listOf(R.id.Mon_1, R.id.Mon_2,R.id.Mon_3,R.id.Mon_4, R.id.Mon_5,R.id.Mon_6,R.id.Mon_7, R.id.Mon_8,R.id.Mon_9,R.id.Mon_10,R.id.Mon_11,R.id.Mon_12),
-            listOf(R.id.Tue_1, R.id.Tue_2,R.id.Tue_3,R.id.Tue_4, R.id.Tue_5,R.id.Tue_6,R.id.Tue_7, R.id.Tue_8,R.id.Tue_9,R.id.Tue_10,R.id.Tue_11,R.id.Tue_12),
-            listOf(R.id.Wed_1, R.id.Wed_2,R.id.Wed_3,R.id.Wed_4, R.id.Wed_5,R.id.Wed_6,R.id.Wed_7, R.id.Wed_8,R.id.Wed_9,R.id.Wed_10,R.id.Wed_11,R.id.Wed_12),
-            listOf(R.id.Thu_1, R.id.Thu_2,R.id.Thu_3,R.id.Thu_4, R.id.Thu_5,R.id.Thu_6,R.id.Thu_7, R.id.Thu_8,R.id.Thu_9,R.id.Thu_10,R.id.Thu_11,R.id.Thu_12),
-            listOf(R.id.Fri_1, R.id.Fri_2,R.id.Fri_3,R.id.Fri_4, R.id.Fri_5,R.id.Fri_6,R.id.Fri_7, R.id.Fri_8,R.id.Fri_9,R.id.Fri_10,R.id.Fri_11,R.id.Fri_12)
-        )
-        for(i in 0 until 5) {
-            val courseTmp : MutableList<TextView> = arrayListOf()
-            for(j in 0 until 9){
-                courseTmp.add(root.findViewById(courseId[i][j]))
-            }
-            courseText.add(courseTmp)
-        }
-
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
         if ( userGra.size == 0 )
@@ -70,10 +54,26 @@ class CurriculumFragment : Fragment() {
         Log.i("CheckUserData", userGra.toString())
         for(i in 0 until userGra.size){
             Log.i("CheckUserData", userGra[i])
-            val sss = userGra[i]
-            for(j in 0 until (userCurr[sss]?.size ?: 0)){
-                Log.i("CheckUserData", userCurr[sss]?.get(j)?.getName())
+            for(j in 0 until (userCurr[userGra[i]]?.size ?: 0)){
+                Log.i("CheckUserData", userCurr[userGra[i]]?.get(j)?.getName()?:"")
             }
+        }
+
+
+        val courseText : MutableList<MutableList<TextView>> = arrayListOf()
+        val courseId = listOf(
+            listOf(R.id.Mon_1, R.id.Mon_2,R.id.Mon_3,R.id.Mon_4, R.id.Mon_5,R.id.Mon_6,R.id.Mon_7, R.id.Mon_8,R.id.Mon_9,R.id.Mon_10,R.id.Mon_11,R.id.Mon_12),
+            listOf(R.id.Tue_1, R.id.Tue_2,R.id.Tue_3,R.id.Tue_4, R.id.Tue_5,R.id.Tue_6,R.id.Tue_7, R.id.Tue_8,R.id.Tue_9,R.id.Tue_10,R.id.Tue_11,R.id.Tue_12),
+            listOf(R.id.Wed_1, R.id.Wed_2,R.id.Wed_3,R.id.Wed_4, R.id.Wed_5,R.id.Wed_6,R.id.Wed_7, R.id.Wed_8,R.id.Wed_9,R.id.Wed_10,R.id.Wed_11,R.id.Wed_12),
+            listOf(R.id.Thu_1, R.id.Thu_2,R.id.Thu_3,R.id.Thu_4, R.id.Thu_5,R.id.Thu_6,R.id.Thu_7, R.id.Thu_8,R.id.Thu_9,R.id.Thu_10,R.id.Thu_11,R.id.Thu_12),
+            listOf(R.id.Fri_1, R.id.Fri_2,R.id.Fri_3,R.id.Fri_4, R.id.Fri_5,R.id.Fri_6,R.id.Fri_7, R.id.Fri_8,R.id.Fri_9,R.id.Fri_10,R.id.Fri_11,R.id.Fri_12)
+        )
+        for(i in 0 until 5) {
+            val courseTmp : MutableList<TextView> = arrayListOf()
+            for(j in 0 until 9){
+                courseTmp.add(root.findViewById(courseId[i][j]))
+            }
+            courseText.add(courseTmp)
         }
 
         val gradeSpinner = root.findViewById(R.id.gradeSelect) as Spinner
@@ -99,36 +99,19 @@ class CurriculumFragment : Fragment() {
                 }
 
                 val grade : String = userGra[pos]
-                val tmpCurr : MutableList<UserCourse> = arrayListOf()
-                tmpCurr.clear()
-                if( userCurr[grade] != null ){
-                    Log.i("ResponseCurr", userCurr[grade]?.size.toString())
-                    for (i in 0 until (userCurr[grade]?.size ?: 0)) {
-                        userCurr[grade]?.get(i)?.let { tmpCurr.add(it) }
-                        Log.i("ResponseCurr",tmpCurr[i].toString())
-                    }
-                    Log.i("ResponseCurr","userCurr "+grade+ " success")
-                }
-                else {
-                    Log.i("ResponseCurr", "userCurr " + grade + " is null")
-                }
-
-                val coursequantity = tmpCurr.size
+                val coursequantity = userCurr[grade]?.size ?:0
                 Log.i("ResponseCurr",coursequantity.toString())
 
-                for(i in 0 until 5 )
-                    for(j in 0 until 9)
-                        courseText[i][j].setText("")
-
-                for(i in 0 until coursequantity){
-                    val weekend = tmpCurr[i].getDate()-1
-                    val start = tmpCurr[i].getStart()-1
-                    val end = tmpCurr[i].getEnd()
+                Log.i("111222333",grade)
+                for(i in 0 until coursequantity ){
+                    val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
+                    val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
+                    val end = userCurr[grade]?.get(i)?.getEnd() ?:0
                     for(j in start until end){
-                        courseText[weekend][j].setText(tmpCurr[i].getName())
+                        courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
+                        Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
                     }
                 }
-
 
             }
         }
@@ -168,7 +151,7 @@ class CurriculumFragment : Fragment() {
         que.add(reqGra)
     }
 
-    private  fun getCurr(curr: LinearLayout,urlCur :String,grade: String){
+    private fun getCurr(curr: LinearLayout,urlCur :String, grade: String){
 
         val que = Volley.newRequestQueue(curr.context)
         val reqCur = object : JsonObjectRequest(Request.Method.GET, urlCur,null,
@@ -176,9 +159,20 @@ class CurriculumFragment : Fragment() {
                     Log.i("ResponseK", "Cur Success")
                     Log.i("ResponseSucces", "Response is: " + response.toString())
 
-                    curriculumViewModel.setUser(response.getJSONArray(grade))
-                    val tmpUserCourse : MutableList<UserCourse> = curriculumViewModel.getUserCourse()
-                    userCurr.put(grade,tmpUserCourse)
+
+                    Log.i("KKKKK",grade)
+
+                    val currGetData  = CurriculumViewModel()
+                    currGetData.setUser(response.getJSONArray(grade))
+                    userCurr.put(grade,currGetData.getUserCourse())
+
+                    Log.i("FUCKYOU", userGra.toString())
+                    for(i in 0 until userGra.size){
+                        Log.i("FUCKYOU", userGra[i])
+                        for(j in 0 until (userCurr[userGra[i]]?.size ?: 0)){
+                            Log.i("FUCKYOU", userCurr[userGra[i]]?.get(j)?.getName()?:"")
+                        }
+                    }
 
                 },
                 Response.ErrorListener { error ->
