@@ -26,7 +26,10 @@ import org.json.JSONObject
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.superlht.htloading.manager.HTLoadingManager
+import com.superlht.htloading.view.HTLoading
+import com.superlht.htloading.spinkit.style.DoubleBounce as StyleDoubleBounce
+import com.superlht.htloading.spinkit.style.FadingCircle as FadingCircle1
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -36,8 +39,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.i("Tag", "onClick")
         when(v?.id){
 
-            R.id.Login -> toHomePage()
-            R.id.fordbg -> toHome()
+            R.id.Login -> toHomePage(Account.text.toString(),PWD.text.toString())
+            R.id.fordbg -> toHomePage("406262319","aa987654321")
+            R.id.Login_page -> test()
 
         }
 
@@ -59,14 +63,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun toHomePage(){
+    private fun toHomePage(accountId: String, password: String){
 
         Log.i("Tag", "toHomePage")
-        val account = Account.text.toString()
-        val password = PWD.text.toString()
+//        val account = Account.text.toString()
+//        val password = PWD.text.toString()
 
         val body: MutableMap<String,String> = HashMap<String, String>()
-        body["username"] = account
+        body["username"] = accountId
         body["password"] = password
         val json = JSONObject(body as Map<*, *>)
 
@@ -80,7 +84,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.i("Login",response.toString())
 
                 ldapToken = response.getString("token")
-                ldapUser = account
+                ldapUser = accountId
                 Log.i("tokenget", ldapUser + " " + ldapToken)
                 Toast.makeText(this@MainActivity, "Login Success", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, Home::class.java))
@@ -89,7 +93,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }, Response.ErrorListener {
                     error ->
                 Toast.makeText(this@MainActivity, "Login Failed", Toast.LENGTH_SHORT).show()
-                Log.i("Login","Fuck")
+                Log.i("LoginErr",error.toString())
             }){}
 
         que.add(req)
@@ -103,6 +107,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(Intent(this, Home::class.java))
         finish()
 
+    }
+
+    private fun test(){
+        HTLoadingManager.isAutoDismiss(true)
+//        HTLoading(this).show()
+//        HTLoading(this).showSuccess()
     }
 
 }
