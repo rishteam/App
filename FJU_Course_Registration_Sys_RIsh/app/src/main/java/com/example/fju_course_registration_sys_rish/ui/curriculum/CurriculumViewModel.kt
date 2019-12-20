@@ -13,7 +13,7 @@ class CurriculumViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    var usercourse : MutableList<UserCourse> = arrayListOf()
+    val usercourse : MutableList<UserCourse> = arrayListOf()
 
     fun setUser(response: JSONArray) {
 
@@ -28,9 +28,8 @@ class CurriculumViewModel : ViewModel() {
 
     }
 
-    fun setUserCourse(course : MutableList<UserCourse> ){
-        usercourse.clear()
-        usercourse = course
+    fun addCourse(course : UserCourse ){
+        usercourse.add(course)
     }
 
     fun getCurUrl(ldapId: String, grade:String):String{
@@ -41,10 +40,6 @@ class CurriculumViewModel : ViewModel() {
     fun getGraUrl(ldapId: String):String{
         val str :String = "http://vm.rish.com.tw/db/v1/users/"+ldapId+"/curriculums"
         return str
-    }
-
-    fun getQuantity() : Int{
-        return usercourse.size
     }
 
     fun getUserCourse() :MutableList<UserCourse>{
