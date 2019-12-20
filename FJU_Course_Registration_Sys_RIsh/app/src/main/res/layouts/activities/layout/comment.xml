@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="@dimen/card_list_margin"
+    app:cardBackgroundColor="@color/card"
+    android:animateLayoutChanges="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/commentLayout"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/comment_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/text_primary"
+                android:text="暱稱"
+                />
+
+            <TextView
+                android:id="@+id/studentID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/text_secondary"
+                android:text="406262***"
+                />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/text_secondary"
+                android:gravity="end"
+                android:text="1小時前"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_primary"
+            android:textColor="@color/primaryText"
+            android:layout_margin="@dimen/comment_margin"
+            android:text="自面化因讀為提土室新相被務門投新開雖北照一量夫 做界色取美步靜書，的道中積破意化完一之不就小讀 往，會城相熱兩風房然去英？地務中戰費民不源其些 系背員們由及只指，光要思一裡難產力，年只有良！ 口正什個許花毛半和老，心詩不國友所不致回嚴動見 天？"
+            />
+
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

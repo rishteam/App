@@ -17,4 +17,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="tab_text_drawer">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/tab_text_color</item>
+    </style>
+
 </resources>

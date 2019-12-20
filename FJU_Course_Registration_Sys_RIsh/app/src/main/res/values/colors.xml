@@ -8,4 +8,8 @@
     <color name="primaryText">#000000</color>
     <color name="secondaryText">#6D6D6D</color>
     <color name="verticalLine">#979797</color>
+    <color name="tab_bar">#212121</color>
+    <color name="tab_text_appear">#FFFFFF</color>
+    <color name="tab_text_color">#B2FFFFFF</color>
+    <color name="tab_indicator_color">#FEFEFE</color>
 </resources>

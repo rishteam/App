@@ -26,6 +26,19 @@ class CourseFragment : Fragment() {
 
     private lateinit var courseViewModel: CourseViewModel
     var url = ""
+    val search : MutableMap<String, String> = mutableMapOf(
+        "course_code" to "",
+        "name"        to "",
+        "teacher"     to "",
+        "department"  to "",
+        "score"       to "",
+        "kind"        to "",
+        "times"       to "",
+        "day"         to "",
+        "week"        to "",
+        "period"      to "",
+        "classroom"   to ""
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,20 +53,32 @@ class CourseFragment : Fragment() {
         val button = root.findViewById(R.id.filter) as MaterialButton
         val result = root.findViewById(R.id.result) as LinearLayout
         val listView = root.findViewById(R.id.listView) as RecyclerView
-
         Log.i("child", "HI")
         button.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
 
-                val inputCourse = Course_name.text.toString()
-                val inputProfessor = Professor.text.toString()
-                if(inputCourse?.length == 0)
-                    Log.i("inputTest", "22222222")
+                search["name"] = Course_name.text.toString()
+                search["teacher"] = Professor.text.toString()
 
-                url = courseViewModel.getURL(inputCourse, inputProfessor)
+//                val inputCourse = Course_name.text.toString()
+//                val inputProfessor = Professor.text.toString()
+                /*
+                search["course_code"]
+                search["department"]
+                search["score"]
+                search["kind"]
+                search["times"]
+                search["day"]
+                search["week"]
+                search["period"]
+                search["classroom"]
+                  */
+
+                url = courseViewModel.getURL(search)
+                Log.i("2345677", url)
 
                 val que = Volley.newRequestQueue(result.context)
-                val req = JsonArrayRequest(Request.Method.POST, url, null,
+                val req = JsonArrayRequest(Request.Method.GET, url, null,
                     Response.Listener<JSONArray> {
                             response ->
 

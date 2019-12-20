@@ -9,6 +9,20 @@ import org.json.JSONObject
 class CourseViewModel : ViewModel() {
 
     val courseList : MutableList<Course> = arrayListOf()
+    val parameterList : List<String> = listOf(
+        "course_code",
+        "name",
+        "teacher",
+        "department",
+        "score",
+        "kind",
+        "times",
+        "day",
+        "week",
+        "period",
+        "classroom"
+    )
+
 
     fun loadData(response: JSONArray) {
 
@@ -22,14 +36,20 @@ class CourseViewModel : ViewModel() {
             courseList.add(course)
         }
     }
-    fun getURL(courseName : String, ProfessorName: String) : String{
+    fun getURL(search: MutableMap<String, String>) : String{
 
-        var url = "http://vm.rish.com.tw/db/v1/fju_course?"
-        if(ProfessorName.length > 0)
-            url += "teacher="+ProfessorName+"&"
-        if(courseName.length > 0)
-            url += "department" + courseName + "&"
+        var url = "http://vm.rish.com.tw/db/v1/fju_course/courses?"
 
+        for(i in parameterList){
+
+            if(search[i]!!.isNotEmpty())
+                url += i + "=" + search[i] + "&"
+        }
+//        if(ProfessorName.length > 0)
+//            url += "teacher="+ProfessorName+"&"
+//        if(courseName.length > 0)
+//            url += "department" + courseName + "&"
+        Log.i("1234566", url)
         return url
 
     }

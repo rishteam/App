@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/infoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="類別"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textSize="@dimen/text_secondary"
+                            android:textColor="@color/secondaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                        <TextView
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="必修"
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/primaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="課程名稱"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textSize="@dimen/text_secondary"
+                            android:textColor="@color/secondaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                        <TextView
+                            android:id="@+id/CName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="資料庫系統概論"
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/primaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="開課系所"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="@dimen/text_secondary"
+                                android:textColor="@color/secondaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                            <TextView
+                                android:id="@+id/DName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text=""
+                                android:textSize="@dimen/text_primary"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textColor="@color/primaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="年級"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="@dimen/text_secondary"
+                                android:textColor="@color/secondaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                            <TextView
+                                android:id="@+id/grade"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="三"
+                                android:textSize="@dimen/text_primary"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textColor="@color/primaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="學分數"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="@dimen/text_secondary"
+                                android:textColor="@color/secondaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                            <TextView
+                                android:id="@+id/credit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="3"
+                                android:textSize="@dimen/text_primary"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textColor="@color/primaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="授課老師"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="@dimen/text_secondary"
+                                android:textColor="@color/secondaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                            <TextView
+                                android:id="@+id/TName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="張信宏"
+                                android:textSize="@dimen/text_primary"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textColor="@color/primaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="專長"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="@dimen/text_secondary"
+                                android:textColor="@color/secondaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                            <TextView
+                                android:id="@+id/Expertise"
+                                android:layout_width="160dp"
+                                android:layout_height="match_parent"
+                                android:text="多媒體應用網路通訊系統"
+                                android:textSize="@dimen/text_primary"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textColor="@color/primaryText"
+                                android:layout_margin="@dimen/card_text_margin"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="時間"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textSize="@dimen/text_secondary"
+                            android:textColor="@color/secondaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                        <TextView
+                            android:id="@+id/weekDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TUE"
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/primaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                        <TextView
+                            android:id="@+id/coursePeriod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="D5-D7"
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/primaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/card"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp"
+                    android:id="@+id/outlineCardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="課程大綱"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textSize="@dimen/text_secondary"
+                            android:textColor="@color/secondaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+
+                        <TextView
+                            android:id="@+id/courseOutline"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="5"
+                            android:text="Databases today are essential to every business. They are used to maintain internal records, to present data to customers and clients on the World Wide Web (WWW), and support many commercial processes."
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:layout_margin="@dimen/card_text_margin"
+                            android:textColor="@color/primaryText"/>
+
+                        <TextView
+                            android:id="@+id/more_less"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="more"
+                            android:textSize="@dimen/text_primary"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/secondaryText"
+                            android:layout_margin="@dimen/card_text_margin"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

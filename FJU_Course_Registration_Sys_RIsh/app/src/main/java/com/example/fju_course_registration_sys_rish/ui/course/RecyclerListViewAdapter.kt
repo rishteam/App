@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fju_course_registration_sys_rish.R
-import com.example.fju_course_registration_sys_rish.course_detail
+import com.example.fju_course_registration_sys_rish.Course_detail
 
 class RecyclerListViewAdapter(private val course : MutableList<Course>, private val context: Context) : RecyclerView.Adapter<RecyclerListViewAdapter.ViewHolder>(){
 
@@ -35,7 +35,7 @@ class RecyclerListViewAdapter(private val course : MutableList<Course>, private 
         holder.itemView.setOnClickListener{
 
             Toast.makeText(it.context, course[position].courseName + " is chosen", Toast.LENGTH_SHORT).show()
-            val intent = Intent(it.context, course_detail::class.java)
+            val intent = Intent(it.context, Course_detail::class.java)
             intent.putExtra("Data", course[position])
             it.context.startActivity(intent)
         }

@@ -2,22 +2,34 @@ package com.example.fju_course_registration_sys_rish
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.viewpager.widget.ViewPager
 import com.example.fju_course_registration_sys_rish.ui.course.Course
-import kotlinx.android.synthetic.main.activity_course_detail.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 
-class course_detail : AppCompatActivity() {
+class Course_detail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_course_detail)
+        setContentView(R.layout.course_activity)
 
-        val course = intent.getSerializableExtra("Data") as? Course
+        val course = intent.getSerializableExtra("Data") as Course
 
-        val id = detail_id
-        val Uname = detail_Uname
+        val sectionsPagerAdapter =
+            SectionsPagerAdapter(supportFragmentManager, course)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
+        val fab: FloatingActionButton = findViewById(R.id.fab)
 
-        id.text = course!!.schoolName
-        Uname.text = course.course_code
+        Log.i("DataInCourseDetail", course.courseName)
 
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
     }
 }
