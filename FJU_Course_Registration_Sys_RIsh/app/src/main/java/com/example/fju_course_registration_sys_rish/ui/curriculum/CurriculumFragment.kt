@@ -67,75 +67,78 @@ class CurriculumFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.Main) {
 
-            val job1 = async {
+            HTLoading(curr.context).run {
 
-                Log.i("cortest","Job1")
-                if ( userGra.size == 0 )
-                    getGrade(curr, urlGra)
-                Thread.sleep(2000)
+                setLoadingText("Loading...").show()
+                val jobGetGrade = async {
 
-            }
-
-            val list1 = job1.await()
-            Log.i("cortest","after await Job1")
-
-            val job2 = async {
-                Log.i("cortest","Job2")
-                Thread.sleep(2000)
-                for (i in 0 until userGra.size){
-                    val grade = userGra[i]
-                    val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
-                    if( userCurr[grade]?.size ?: 0 == 0 )
-                        getCurr(curr,urlCur,grade)
+                    Log.i("cortest","Job1")
+                    if ( userGra.size == 0 )
+                        getGrade(curr, urlGra)
                     Thread.sleep(2000)
+
                 }
+                jobGetGrade.await()
+
+                val jobGetCurr = async {
+                    Log.i("cortest","Job2")
+                    Thread.sleep(2000)
+                    for (i in 0 until userGra.size){
+                        val grade = userGra[i]
+                        val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
+                        if( userCurr[grade]?.size ?: 0 == 0 )
+                            getCurr(curr,urlCur,grade)
+                        Thread.sleep(2000)
+                    }
+
+                }
+                jobGetCurr.await()
+
+                val jobSetSpin = async {
+                    val adapter = ArrayAdapter(gradeSpinner.context, android.R.layout.simple_spinner_dropdown_item, userGra)
+                    gradeSpinner.adapter = adapter
+                    gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                        override fun onNothingSelected(parent: AdapterView<*>?) {
+                            Log.i("ResponseCurr","Nothing Select")
+                        }
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                            Log.i("ResponseCurr", "Select: " +userGra[pos])
+
+                            for(i in 0 until userGra.size){
+                                Log.i("CheckUserDataInSpinner", userGra[i])
+                                val sss = userGra[i]
+                                for(j in 0 until (userCurr[sss]?.size ?: 0)){
+                                    Log.i("CheckUserDataInSpinner", userCurr[sss]?.get(j)?.getName()?:"")
+                                }
+                            }
+
+                            val grade : String = userGra[pos]
+                            val coursequantity = userCurr[grade]?.size ?:0
+                            Log.i("ResponseCurr",coursequantity.toString())
+
+                            for(i in 0 until 5)
+                                for(j in 0 until 12)
+                                    courseText[i][j].setText("")
+
+                            Log.i("111222333",grade)
+                            for(i in 0 until coursequantity ){
+                                val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
+                                val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
+                                val end = userCurr[grade]?.get(i)?.getEnd() ?:0
+                                for(j in start until end){
+                                    courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
+                                    Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
+                                }
+                            }
+
+                        }
+                    }
+                }
+                jobSetSpin.await()
+
+                dismiss()
 
             }
-
-            val list2 = job2.await()
-            Log.i("cortest","after await Job2")
-
-            val job3 = async {
-                val adapter = ArrayAdapter(gradeSpinner.context, android.R.layout.simple_spinner_dropdown_item, userGra)
-                gradeSpinner.adapter = adapter
-                gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                    override fun onNothingSelected(parent: AdapterView<*>?) {
-                        Log.i("ResponseCurr","Nothing Select")
-                    }
-                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                        Log.i("ResponseCurr", "Select: " +userGra[pos])
-
-                        for(i in 0 until userGra.size){
-                            Log.i("CheckUserDataInSpinner", userGra[i])
-                            val sss = userGra[i]
-                            for(j in 0 until (userCurr[sss]?.size ?: 0)){
-                                Log.i("CheckUserDataInSpinner", userCurr[sss]?.get(j)?.getName())
-                            }
-                        }
-
-                        val grade : String = userGra[pos]
-                        val coursequantity = userCurr[grade]?.size ?:0
-                        Log.i("ResponseCurr",coursequantity.toString())
-
-                        for(i in 0 until 5)
-                            for(j in 0 until 12)
-                                courseText[i][j].setText("")
-
-                        Log.i("111222333",grade)
-                        for(i in 0 until coursequantity ){
-                            val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
-                            val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
-                            val end = userCurr[grade]?.get(i)?.getEnd() ?:0
-                            for(j in start until end){
-                                courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
-                                Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
-                            }
-                        }
-
-                    }
-                }
-            }
-            val list3 = job3.await()
 
         }
 
@@ -156,7 +159,7 @@ class CurriculumFragment : Fragment() {
                         userGra.add(gradeJson[i].toString())
                     }
 
-                    HTLoading(curr.context).setSuccessText("Grade Success").showSuccess()
+//                    HTLoading(curr.context).setSuccessText("Grade Success").showSuccess()
 
                 },
                 Response.ErrorListener { error ->
@@ -200,7 +203,7 @@ class CurriculumFragment : Fragment() {
                         }
                     }
 
-                    HTLoading(curr.context).setSuccessText( grade + " Curr Success").showSuccess()
+//                    HTLoading(curr.context).setSuccessText( grade + " Curr Success").showSuccess()
 
                 },
                 Response.ErrorListener { error ->
