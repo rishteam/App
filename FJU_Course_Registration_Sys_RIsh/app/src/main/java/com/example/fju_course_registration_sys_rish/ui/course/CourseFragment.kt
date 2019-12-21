@@ -60,8 +60,6 @@ class CourseFragment : Fragment() {
                 search["name"] = Course_name.text.toString()
                 search["teacher"] = Professor.text.toString()
 
-//                val inputCourse = Course_name.text.toString()
-//                val inputProfessor = Professor.text.toString()
                 /*
                 search["course_code"]
                 search["department"]

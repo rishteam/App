@@ -1,24 +1,18 @@
 package com.example.fju_course_registration_sys_rish
 
 import android.animation.ObjectAnimator
-import android.graphics.Paint
-import android.graphics.Rect
-import android.provider.Settings.Global.getInt
 import android.text.TextUtils
-import android.transition.TransitionManager
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fju_course_registration_sys_rish.R
-import java.lang.Integer.getInteger
+import java.util.*
 
 
-
-class CommentListViewAdapter() : RecyclerView.Adapter<CommentListViewAdapter.ViewHolder>() {
+class CommentListViewAdapter(private val comment : MutableList<Comment>) : RecyclerView.Adapter<CommentListViewAdapter.ViewHolder>() {
 
     val DEFAULT_MAXLINE = 5
     var MAXLINE         = 1000
@@ -32,11 +26,14 @@ class CommentListViewAdapter() : RecyclerView.Adapter<CommentListViewAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Log.i("adapter", "onBind")
-        holder.studentId.text = "406262084"
-        holder.time.text = "30年前"
-        holder.comment.text = "中文大概應該也許我猜一行可以有十七個文字然後我要不斷的測試測試測試測試測試測試中文大概應該也許我猜一行可以有十七個文字然後我要不斷的測試測試測試測試測試測試中文大概應該也許我猜一行可以有十七個文字然後我要不斷的測試測試測試測試測試測試中文大概應該也許我猜一行可以有十七個文字然後我要不斷的測試測試測試測試測試測試"
+        holder.studentId.text = comment[position].stuID
+        holder.time.text = getTimeAgo(comment[position].createDate)
+        holder.comment.text = comment[position].message
+//
+//        holder.studentId.text = "123"
+//        holder.time.text = getTimeAgo("2019-12-18 09:22:23")
+//        holder.comment.text = "huhfufheuhfu"
 
-        MAXLINE = holder.comment.text.length/17 + 1
         holder.comment.setEllipsize(TextUtils.TruncateAt.END)
         holder.comment.setMaxLines(DEFAULT_MAXLINE)
         Log.i("animate1111", MAXLINE.toString())
@@ -57,6 +54,7 @@ class CommentListViewAdapter() : RecyclerView.Adapter<CommentListViewAdapter.Vie
 //                holder.comment.setMaxLines(25)
                 holder.comment.setEllipsize(null)
                 isExpand = true
+                MAXLINE = holder.comment.text.length/10 + 1
                 val animation = ObjectAnimator.ofInt(holder.comment, "maxLines", MAXLINE)
                 animation.setDuration(200).start()
             }
@@ -70,7 +68,7 @@ class CommentListViewAdapter() : RecyclerView.Adapter<CommentListViewAdapter.Vie
 
     override fun getItemCount(): Int {
 
-        return 10
+        return comment.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -78,6 +76,17 @@ class CommentListViewAdapter() : RecyclerView.Adapter<CommentListViewAdapter.Vie
         val studentId: TextView = view.findViewById(R.id.studentID)
         val time: TextView = view.findViewById(R.id.time)
         val comment: TextView = view.findViewById(R.id.comment)
+    }
+
+    fun getTimeAgo(time: String): String {
+
+        val simpleDataFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN)
+        simpleDataFormat.timeZone = TimeZone.getTimeZone(time)
+        val createTime = simpleDataFormat.parse(time).time
+        val currentTime = System.currentTimeMillis()
+        Log.i("TimeAgo", currentTime.toString())
+        Log.i("TimeAgo", DateUtils.getRelativeTimeSpanString(createTime, currentTime, DateUtils.MINUTE_IN_MILLIS).toString())
+        return DateUtils.getRelativeTimeSpanString(createTime, currentTime, DateUtils.SECOND_IN_MILLIS).toString()
     }
 
 }

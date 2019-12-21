@@ -55,7 +55,6 @@ class InfoFragment(private val course: Course) : Fragment(){
             Request.Method.GET, url, null,
             Response.Listener<JSONObject> {
                     response ->
-                Log.i("77777777888888", response.toString())
 
                 DName.text = course.department
                 Grade.text = "N/A"
@@ -95,25 +94,12 @@ class InfoFragment(private val course: Course) : Fragment(){
             else{
 
                 Log.i("outLineClicked", "collapse")
-//                MAXLINES = Outline.length()/17 + 1
                 val animation = ObjectAnimator.ofInt(Outline, "maxLines", MAXLINES)
                 animation.setDuration(200).start()
                 isExpanded = true
                 more_less.setText(getString(R.string.string, "less"))
             }
         }
-
-
-//        category.text = course.kind
-//        CName.text = course.courseName
-//        DName.text = course.department
-//        Grade.text = "N/A"
-//        Credit.text = course.score
-//        TName.text = course.professor
-//        Exp.text = "N/A"
-//        Day.text = course.day
-//        Period.text = course.period
-//        Outline.text = "N/A"
 
         return root
     }
