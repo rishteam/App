@@ -56,9 +56,5 @@ class RecyclerListViewAdapter(private val course : MutableList<Course>, private 
         val textViewDay : TextView = view.findViewById(R.id.day)
         val textViewPeriod : TextView = view.findViewById(R.id.period)
         val textViewClassroom : TextView = view.findViewById(R.id.classroom)
-
-        //        val textViewID : TextView = view.findViewById(R.id.id)
-//        val textViewUname : TextView = view.findViewById(R.id.Uname)
-
     }
 }

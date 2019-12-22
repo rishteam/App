@@ -19,10 +19,7 @@ class SectionsPagerAdapter(fm: FragmentManager,private val data: Course) :
         return when (position) {
 
             0 -> InfoFragment(data)
-            else -> {
-                CommentFragment()
-            }
-
+            else -> CommentFragment(data.course_code)
         }
     }
 
@@ -30,10 +27,7 @@ class SectionsPagerAdapter(fm: FragmentManager,private val data: Course) :
         return when (position) {
 
             0 -> "Info"
-            else -> {
-
-                "Comment"
-            }
+            else -> "Comment"
 
         }
     }
