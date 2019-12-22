@@ -73,20 +73,18 @@ class CurriculumFragment : Fragment() {
                     Log.i("cortest","Job1")
                     if ( userGra.size == 0 )
                         getGrade(curr, urlGra)
-                    Thread.sleep(2000)
+                    Thread.sleep(1000)
 
                 }
                 jobGetGrade.await()
 
                 val jobGetCurr = async {
                     Log.i("cortest","Job2")
-                    Thread.sleep(2000)
                     for (i in 0 until userGra.size){
                         val grade = userGra[i]
                         val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
                         if( userCurr[grade]?.size ?: 0 == 0 )
                             getCurr(curr,urlCur,grade)
-                        Thread.sleep(2000)
                     }
 
                 }
@@ -100,23 +98,17 @@ class CurriculumFragment : Fragment() {
                             Log.i("ResponseCurr","Nothing Select")
                         }
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                            Log.i("ResponseCurr", "Select: " +userGra[pos])
-
-                            for(i in 0 until userGra.size){
-                                Log.i("CheckUserDataInSpinner", userGra[i])
-                                val sss = userGra[i]
-                                for(j in 0 until (userCurr[sss]?.size ?: 0)){
-                                    Log.i("CheckUserDataInSpinner", userCurr[sss]?.get(j)?.getName()?:"")
-                                }
-                            }
 
                             val grade : String = userGra[pos]
                             val coursequantity = userCurr[grade]?.size ?:0
                             Log.i("ResponseCurr",coursequantity.toString())
 
-                            for(i in 0 until 5)
-                                for(j in 0 until 12)
-                                    courseText[i][j].setText("")
+                            for(i in 0 until 5) {
+                                for (j in 0 until 12) {
+                                    courseText[i][j].setText(" ")
+                                    courseText[i][j].setTextColor(android.graphics.Color.WHITE)
+                                }
+                            }
 
                             Log.i("111222333",grade)
                             for(i in 0 until coursequantity ){
@@ -125,6 +117,7 @@ class CurriculumFragment : Fragment() {
                                 val end = userCurr[grade]?.get(i)?.getEnd() ?:0
                                 for(j in start until end){
                                     courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
+                                    courseText[weekend][j].setTextColor(android.graphics.Color.WHITE)
                                     Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
                                 }
                             }
@@ -192,14 +185,6 @@ class CurriculumFragment : Fragment() {
                     val currGetData  = CurriculumViewModel()
                     currGetData.setUser(response.getJSONArray(grade))
                     userCurr.put(grade,currGetData.getUserCourse())
-
-                    Log.i("FUCKYOU", userGra.toString())
-                    for(i in 0 until userGra.size){
-                        Log.i("FUCKYOU", userGra[i])
-                        for(j in 0 until (userCurr[userGra[i]]?.size ?: 0)){
-                            Log.i("FUCKYOU", userCurr[userGra[i]]?.get(j)?.getName()?:"")
-                        }
-                    }
 
 //                    HTLoading(curr.context).setSuccessText( grade + " Curr Success").showSuccess()
 
