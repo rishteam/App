@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FJU_Course_Registration_Sys_RIsh</string>
+    <string name="app_name">選課小幫手</string>
     <string name="Account">Account</string>
     <string name="PWD">Password</string>
     <string name="Login">Login</string>

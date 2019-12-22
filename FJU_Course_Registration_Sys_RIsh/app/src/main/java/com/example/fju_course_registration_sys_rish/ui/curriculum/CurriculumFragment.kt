@@ -32,7 +32,6 @@ import org.json.JSONArray
 class CurriculumFragment : Fragment() {
 
     private lateinit var curriculumViewModel: CurriculumViewModel
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + Job())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +62,6 @@ class CurriculumFragment : Fragment() {
 
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
-
 
         GlobalScope.launch(Dispatchers.Main) {
 
@@ -223,6 +221,5 @@ class CurriculumFragment : Fragment() {
         }
         que.add(reqCur)
     }
-
 
 }
