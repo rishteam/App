@@ -85,6 +85,7 @@ class CurriculumFragment : Fragment() {
                         val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
                         if( userCurr[grade]?.size ?: 0 == 0 )
                             getCurr(curr,urlCur,grade)
+                        Thread.sleep(1000)
                     }
 
                 }
