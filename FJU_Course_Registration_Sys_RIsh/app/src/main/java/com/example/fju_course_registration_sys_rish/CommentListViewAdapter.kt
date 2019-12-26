@@ -26,9 +26,12 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Log.i("adapter", "onBind")
+
         holder.studentId.text = comment[position].stuID
         holder.time.text = getTimeAgo(comment[position].createDate)
         holder.comment.text = comment[position].message
+
+
 //
 //        holder.studentId.text = "123"
 //        holder.time.text = getTimeAgo("2019-12-18 09:22:23")
@@ -61,7 +64,7 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
 
 //            val animation = ObjectAnimator.ofInt(holder.comment, "maxLines", 25)
 //            animation.setDuration(20000000000).start()
-            Log.i("animate2", holder.comment.maxLines.toString())
+//            Log.i("animate2", holder.comment.maxLines.toString())
         }
 
     }
