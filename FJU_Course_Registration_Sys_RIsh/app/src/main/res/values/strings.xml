@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FJU_Course_Registration_Sys_RIsh</string>
+    <string name="app_name">選課小幫手</string>
     <string name="Account">Account</string>
     <string name="PWD">Password</string>
     <string name="Login">Login</string>
@@ -17,9 +17,7 @@
     <string name="menu_search">Search</string>
     <string name="menu_course">Course</string>
     <string name="menu_curriculum">Curriculum</string>
-    <string name="menu_recommend">Recommend</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_about">About</string>
 
     <string name="welcome">Welcome to RISH</string>
     <string name="Course_Name">Course Name</string>
