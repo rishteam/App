@@ -22,104 +22,135 @@
             android:layout_width="match_parent"
             android:layout_height="417dp"
             android:layout_weight="1.0"
-            android:gravity="center"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Search_label"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:focusable="auto"
-                android:hint="@string/Course_Name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.011">
+            <LinearLayout
+                android:id="@+id/toolLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Course_name"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/aaa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Professor_label"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:focusable="auto"
-                android:hint="@string/Professor_Name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.516"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Search_label"
-                app:layout_constraintVertical_bias="0.0">
+                    android:layout_margin="@dimen/comment_margin"
+                    android:background="@color/tab_bar"
+                    app:navigationIcon="@drawable/expand_24dp"
+                    app:contentInsetStartWithNavigation="0dp">
 
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Professor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
 
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Day_label"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:focusable="auto"
-                android:hint="@string/Day"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Professor_label"
-                app:layout_constraintVertical_bias="0.0">
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:iconifiedByDefault="true"
+                        app:queryBackground="@android:color/transparent"
+                        android:layoutDirection="rtl"
+                        app:queryHint="@string/search_hint"
+                        >
+                    </androidx.appcompat.widget.SearchView>
 
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Duration_label"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:focusable="auto"
-                android:hint="@string/Duration"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Day_label"
-                app:layout_constraintVertical_bias="0.0">
+                </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
 
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Duration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Search_label"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="380dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:focusable="auto"-->
+<!--                android:hint="@string/Course_Name"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.483"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.011">-->
 
-                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/Course_name"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Professor_label"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="380dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:focusable="auto"-->
+<!--                android:hint="@string/Professor_Name"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.516"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/Search_label"-->
+<!--                app:layout_constraintVertical_bias="0.0">-->
+
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/Professor"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Day_label"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="380dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:focusable="auto"-->
+<!--                android:hint="@string/Day"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.483"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/Professor_label"-->
+<!--                app:layout_constraintVertical_bias="0.0">-->
+
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/Day"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Duration_label"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="380dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:focusable="auto"-->
+<!--                android:hint="@string/Duration"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.483"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/Day_label"-->
+<!--                app:layout_constraintVertical_bias="0.0">-->
+
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/Duration"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/filter"
