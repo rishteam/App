@@ -1,26 +1,32 @@
 package com.example.fju_course_registration_sys_rish.ui.curriculum
 
+import android.graphics.Color
 import android.util.Log
 import org.json.JSONObject
+import java.io.Serializable
 
-class UserCourse {
-    var courseid: Int = 0
+class UserCourse : Serializable {
+    var course_code: String = ""
     var courseName: String = ""
     var courseDate: Int = 0
     var startT: Int = 0
     var endT: Int = 0
+    var color: Int = 0
 
     init {
-        courseid = 0
+        course_code = ""
         courseName = ""
         courseDate = 0
         startT = 0
         endT = 0
+        color = 0
     }
+
 
     fun parseData(jsonObject: JSONObject){
 
         Log.i("set_user", jsonObject.toString())
+        course_code = if(jsonObject.getString("code").isNotEmpty()) jsonObject.getString("code") else "N/A"
         courseName = jsonObject.getString("subject")
         val T = jsonObject.getJSONArray("time")
         Log.i("find_time",T[0].toString())
@@ -29,6 +35,21 @@ class UserCourse {
         period_Ch(T.getJSONObject(0).getString("period"))
         Log.i("find_time",startT.toString()+" "+endT.toString())
 
+        if( jsonObject.getBoolean("orig") )
+            color = Color.rgb(255,255,255)
+        if( jsonObject.getBoolean("pick") )
+            color = Color.rgb(0xAF,0xFF,0xA6)
+
+
+
+    }
+
+    fun emptyCourse(d:Int,t:Int){
+//        courseName = "E"
+        courseDate = d
+        startT = t
+        endT = t
+        color = Color.argb(0,0, 0, 0)
     }
 
     fun day_ch(str :String){
