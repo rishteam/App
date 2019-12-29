@@ -1,6 +1,5 @@
 package com.example.fju_course_registration_sys_rish.ui.course
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,23 +10,15 @@ import com.example.fju_course_registration_sys_rish.R
 import android.util.Log
 import android.view.Gravity
 import android.widget.*
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.cardview.widget.CardView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
-import com.example.fju_course_registration_sys_rish.ui.search.SearchFragment
-import com.google.android.material.button.MaterialButton
+import com.example.fju_course_registration_sys_rish.CourseData.Companion.courseData
 import kotlinx.android.synthetic.main.fragment_course.*
-import org.json.JSONArray
 
-class CourseFragment(val course: MutableList<Course> = arrayListOf()) : Fragment() {
+class CourseFragment(var course: MutableList<Course> = arrayListOf()) : Fragment() {
 
     private lateinit var courseViewModel: CourseViewModel
     val search : MutableMap<String, String> = mutableMapOf(
@@ -60,20 +51,20 @@ class CourseFragment(val course: MutableList<Course> = arrayListOf()) : Fragment
         val listView = root.findViewById(R.id.listView) as RecyclerView
         val tb = root.findViewById(R.id.aaa) as Toolbar
 //        val sv = root.findViewById(R.id.searchView) as SearchView
-
-        if(course.isNotEmpty())
-            Log.i("child", course[0].professor)
+        val navController = findNavController()
 
         tb.setOnClickListener {
 
             Toast.makeText(toolLayout.context, "hih", Toast.LENGTH_SHORT).show()
-            val testFragment : SearchFragment = SearchFragment()
-            val fra = getFragmentManager()
-            val transaction = fra!!.beginTransaction()
-            transaction.replace(R.id.nav_host_fragment, testFragment)
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            transaction.commit()
+            navController.navigate(R.id.nav_search)
+//            val testFragment : SearchFragment = SearchFragment()
+//            val fra = getFragmentManager()
+//            val transaction = fra!!.beginTransaction()
+//            transaction.replace(R.id.nav_host_fragment, testFragment)
+//            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//            transaction.commit()
         }
+        course = courseData
 
         if(course.isNotEmpty()){
 

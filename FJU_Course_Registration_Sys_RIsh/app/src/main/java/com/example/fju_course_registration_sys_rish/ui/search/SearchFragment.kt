@@ -10,10 +10,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.fju_course_registration_sys_rish.CourseData.Companion.courseData
 import com.example.fju_course_registration_sys_rish.R
 import com.example.fju_course_registration_sys_rish.ui.course.CourseFragment
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -65,6 +68,8 @@ class SearchFragment : Fragment() {
         val spinnerEnd = root.findViewById(R.id.period_end) as Spinner
         val adapterEnd = ArrayAdapter(spinner_layout.context, android.R.layout.simple_spinner_item, item)
         adapterEnd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val navController = findNavController()
 
 
         spinner.adapter = adapter
@@ -177,7 +182,6 @@ class SearchFragment : Fragment() {
 
                 url = searchViewModel.getURL(search, day, overlap)
 
-
                 val que = Volley.newRequestQueue(spinner_layout.context)
                 val req = JsonArrayRequest(Request.Method.GET, url, null,
                     Response.Listener<JSONArray> {
@@ -187,12 +191,14 @@ class SearchFragment : Fragment() {
 
                         searchViewModel.loadData(response)
 
-                        val testFragment : CourseFragment = CourseFragment(searchViewModel.getList())
-                        val fra = getFragmentManager()
-                        val transaction = fra!!.beginTransaction()
-                        transaction.replace(R.id.nav_host_fragment, testFragment)
-                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        transaction.commit()
+                        courseData = searchViewModel.getList()
+                        navController.navigate(R.id.nav_course)
+//                        val testFragment : CourseFragment = CourseFragment(searchViewModel.getList())
+//                        val fra = getFragmentManager()
+//                        val transaction = fra!!.beginTransaction()
+//                        transaction.replace(R.id.nav_host_fragment, testFragment)
+//                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                        transaction.commit()
                     },
                     Response.ErrorListener { error->
 
