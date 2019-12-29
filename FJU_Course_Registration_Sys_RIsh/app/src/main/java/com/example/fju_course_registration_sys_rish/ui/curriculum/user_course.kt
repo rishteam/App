@@ -18,6 +18,7 @@ class UserCourse {
         endT = 0
     }
 
+
     fun parseData(jsonObject: JSONObject){
 
         Log.i("set_user", jsonObject.toString())
@@ -29,6 +30,13 @@ class UserCourse {
         period_Ch(T.getJSONObject(0).getString("period"))
         Log.i("find_time",startT.toString()+" "+endT.toString())
 
+    }
+
+    fun emptyCourse(d:Int,t:Int){
+//        courseName = "E"
+        courseDate = d
+        startT = t
+        endT = t
     }
 
     fun day_ch(str :String){

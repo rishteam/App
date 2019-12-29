@@ -5,16 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.fju_course_registration_sys_rish.R
 import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapToken
@@ -22,12 +23,10 @@ import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapUser
 import com.example.fju_course_registration_sys_rish.UserData.Companion.userCurr
 import com.example.fju_course_registration_sys_rish.UserData.Companion.userGra
 import com.superlht.htloading.view.HTLoading
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_curriculum.*
-import kotlinx.android.synthetic.main.fragment_send.view.*
-import kotlinx.coroutines.*
-import org.json.JSONArray
-
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class CurriculumFragment : Fragment() {
 
@@ -43,22 +42,22 @@ class CurriculumFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_curriculum, container, false)
 
         val gradeSpinner = root.findViewById(R.id.gradeSelect) as Spinner
-
-        val courseText : MutableList<MutableList<TextView>> = arrayListOf()
-        val courseId = listOf(
-            listOf(R.id.Mon_1, R.id.Mon_2,R.id.Mon_3,R.id.Mon_4, R.id.Mon_5,R.id.Mon_6,R.id.Mon_7, R.id.Mon_8,R.id.Mon_9,R.id.Mon_10,R.id.Mon_11,R.id.Mon_12),
-            listOf(R.id.Tue_1, R.id.Tue_2,R.id.Tue_3,R.id.Tue_4, R.id.Tue_5,R.id.Tue_6,R.id.Tue_7, R.id.Tue_8,R.id.Tue_9,R.id.Tue_10,R.id.Tue_11,R.id.Tue_12),
-            listOf(R.id.Wed_1, R.id.Wed_2,R.id.Wed_3,R.id.Wed_4, R.id.Wed_5,R.id.Wed_6,R.id.Wed_7, R.id.Wed_8,R.id.Wed_9,R.id.Wed_10,R.id.Wed_11,R.id.Wed_12),
-            listOf(R.id.Thu_1, R.id.Thu_2,R.id.Thu_3,R.id.Thu_4, R.id.Thu_5,R.id.Thu_6,R.id.Thu_7, R.id.Thu_8,R.id.Thu_9,R.id.Thu_10,R.id.Thu_11,R.id.Thu_12),
-            listOf(R.id.Fri_1, R.id.Fri_2,R.id.Fri_3,R.id.Fri_4, R.id.Fri_5,R.id.Fri_6,R.id.Fri_7, R.id.Fri_8,R.id.Fri_9,R.id.Fri_10,R.id.Fri_11,R.id.Fri_12)
+        val mon = root.findViewById(R.id.Monday) as LinearLayout
+        val tue = root.findViewById(R.id.Tuesday) as LinearLayout
+        val wed = root.findViewById(R.id.Wednesday) as LinearLayout
+        val thu = root.findViewById(R.id.Thursday) as LinearLayout
+        val fri = root.findViewById(R.id.Friday) as LinearLayout
+        val week = listOf(
+            mon,tue,wed,thu,fri
         )
-        for(i in 0 until 5) {
-            val courseTmp : MutableList<TextView> = arrayListOf()
-            for(j in 0 until 12){
-                courseTmp.add(root.findViewById(courseId[i][j]))
-            }
-            courseText.add(courseTmp)
-        }
+        val monCourse = root.findViewById(R.id.MondayCourse) as RecyclerView
+        val tueCourse = root.findViewById(R.id.TuesdayCourse) as RecyclerView
+        val wedCourse = root.findViewById(R.id.WednesdayCourse) as RecyclerView
+        val thuCourse = root.findViewById(R.id.ThursdayCourse) as RecyclerView
+        val friCourse = root.findViewById(R.id.FridayCourse) as RecyclerView
+        val weekCourse = listOf(
+            monCourse,tueCourse,wedCourse,thuCourse,friCourse
+        )
 
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
@@ -101,27 +100,44 @@ class CurriculumFragment : Fragment() {
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
 
                             val grade : String = userGra[pos]
-                            val coursequantity = userCurr[grade]?.size ?:0
-                            Log.i("ResponseCurr",coursequantity.toString())
+//                            val coursequantity = userCurr[grade]?.size ?:0
+//                            Log.i("ResponseCurr",coursequantity.toString())
+
+                            if( userCurr[grade] != null )
+                                curriculumViewModel.getCurrByGlobal(userCurr[grade]!!)
+
+
+                            val ttt : MutableList<UserCourse> = curriculumViewModel.getCourse(1)
+                            for(i in 0 until ttt.size)
+                                Log.i("12345678",ttt[i].getName())
+
 
                             for(i in 0 until 5) {
-                                for (j in 0 until 12) {
-                                    courseText[i][j].setText(" ")
-                                    courseText[i][j].setTextColor(android.graphics.Color.WHITE)
-                                }
+                                week[i].removeAllViews()
+                                week[i].refreshDrawableState()
+                                weekCourse[i].layoutManager = LinearLayoutManager(week[i].context)
+                                weekCourse[i].adapter = RecyclerCurrAdapter(curriculumViewModel.getCourse(i+1), week[i].context)
+                                week[i].addView(weekCourse[i])
                             }
 
-                            Log.i("111222333",grade)
-                            for(i in 0 until coursequantity ){
-                                val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
-                                val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
-                                val end = userCurr[grade]?.get(i)?.getEnd() ?:0
-                                for(j in start until end){
-                                    courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
-                                    courseText[weekend][j].setTextColor(android.graphics.Color.WHITE)
-                                    Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
-                                }
-                            }
+//                            for(i in 0 until 5) {
+//                                for (j in 0 until 12) {
+//                                    courseText[i][j].setText(" ")
+//                                    courseText[i][j].setTextColor(android.graphics.Color.WHITE)
+//                                }
+//                            }
+//
+//                            Log.i("111222333",grade)
+//                            for(i in 0 until coursequantity ){
+//                                val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
+//                                val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
+//                                val end = userCurr[grade]?.get(i)?.getEnd() ?:0
+//                                for(j in start until end){
+//                                    courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
+//                                    courseText[weekend][j].setTextColor(android.graphics.Color.WHITE)
+//                                    Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
+//                                }
+//                            }
 
                         }
                     }

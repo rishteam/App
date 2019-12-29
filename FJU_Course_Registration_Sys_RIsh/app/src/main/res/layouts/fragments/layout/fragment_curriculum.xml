@@ -14,16 +14,15 @@
            android:id="@+id/full_curriculum"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:orientation="horizontal">
+           android:orientation="vertical">
 
-           <!--           session-->
            <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-               <LinearLayout
+
+              <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="60dp"
                    android:layout_weight="1.0"
@@ -35,6 +34,85 @@
                        android:layout_height="wrap_content"/>
 
                </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_weight="1.0"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/Mon" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_weight="1.0"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/Tue" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_weight="1.0"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/Wed" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_weight="1.0"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/Thu" />
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="60dp"
+                   android:layout_weight="1.0"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/Fri" />
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+           <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+           <!--           session-->
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1.0"
+               android:orientation="vertical">
+
+               
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -184,888 +262,93 @@
 
            <!--           Monday-->
            <LinearLayout
+               android:id="@+id/Monday"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_weight="1.0"
                android:orientation="vertical">
 
-               <LinearLayout
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/MondayCourse"
                    android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
+                   android:layout_height="match_parent" />
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Mon" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_3"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_4"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_5"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_6"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_7"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_8"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_9"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_11"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Mon_12"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
 
            </LinearLayout>
 
            <!--           Tuesday-->
            <LinearLayout
+               android:id="@+id/Tuesday"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_weight="1.0"
                android:orientation="vertical">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
+               
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Tue" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_3"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_4"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_5"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_6"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_7"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_8"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_9"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_11"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Tue_12"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
+               <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/TuesdayCourse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
            </LinearLayout>
 
            <!--            Wednesday-->
            <LinearLayout
+               android:id="@+id/Wednesday"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_weight="1.0"
                android:orientation="vertical">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
+               
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Wed" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_3"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_4"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_5"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_6"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_7"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_8"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_9"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_11"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Wed_12"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
+               <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/WednesdayCourse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
            </LinearLayout>
 
            <!--            Thursday-->
            <LinearLayout
+               android:id="@+id/Thursday"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_weight="1.0"
                android:orientation="vertical">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
+               
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Thu" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_3"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_4"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_5"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_6"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_7"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_8"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_9"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_11"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Thu_12"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
+               <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ThursdayCourse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
            </LinearLayout>
 
            <!--            Friday-->
            <LinearLayout
+               android:id="@+id/Friday"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:layout_weight="1.0"
                android:orientation="vertical">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
+               
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Fri" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_3"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_4"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_5"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_6"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_7"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_8"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_9"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_11"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:id="@+id/Fri_12"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="" />
-               </LinearLayout>
+               <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/FridayCourse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
            </LinearLayout>
+
+
+           </LinearLayout>
+
+
 
        </LinearLayout>
 
