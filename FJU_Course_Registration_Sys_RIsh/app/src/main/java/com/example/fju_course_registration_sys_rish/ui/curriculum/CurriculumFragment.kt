@@ -72,7 +72,7 @@ class CurriculumFragment : Fragment() {
                     Log.i("cortest","Job1")
                     if ( userGra.size == 0 )
                         getGrade(curr, urlGra)
-                    Thread.sleep(1000)
+                    Thread.sleep(1500)
 
                 }
                 jobGetGrade.await()
@@ -84,7 +84,7 @@ class CurriculumFragment : Fragment() {
                         val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
                         if( userCurr[grade]?.size ?: 0 == 0 )
                             getCurr(curr,urlCur,grade)
-                        Thread.sleep(1000)
+                        Thread.sleep(1500)
                     }
 
                 }
@@ -100,12 +100,9 @@ class CurriculumFragment : Fragment() {
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
 
                             val grade : String = userGra[pos]
-//                            val coursequantity = userCurr[grade]?.size ?:0
-//                            Log.i("ResponseCurr",coursequantity.toString())
 
                             if( userCurr[grade] != null )
                                 curriculumViewModel.getCurrByGlobal(userCurr[grade]!!)
-
 
                             val ttt : MutableList<UserCourse> = curriculumViewModel.getCourse(1)
                             for(i in 0 until ttt.size)
@@ -120,24 +117,6 @@ class CurriculumFragment : Fragment() {
                                 week[i].addView(weekCourse[i])
                             }
 
-//                            for(i in 0 until 5) {
-//                                for (j in 0 until 12) {
-//                                    courseText[i][j].setText(" ")
-//                                    courseText[i][j].setTextColor(android.graphics.Color.WHITE)
-//                                }
-//                            }
-//
-//                            Log.i("111222333",grade)
-//                            for(i in 0 until coursequantity ){
-//                                val weekend = (userCurr[grade]?.get(i)?.getDate() ?: 0) -1
-//                                val start = (userCurr[grade]?.get(i)?.getStart() ?: 0) -1
-//                                val end = userCurr[grade]?.get(i)?.getEnd() ?:0
-//                                for(j in start until end){
-//                                    courseText[weekend][j].setText(userCurr[grade]?.get(i)?.getName())
-//                                    courseText[weekend][j].setTextColor(android.graphics.Color.WHITE)
-//                                    Log.i("111222333",userCurr[grade]?.get(i)?.getName()?:"0")
-//                                }
-//                            }
 
                         }
                     }
@@ -167,7 +146,6 @@ class CurriculumFragment : Fragment() {
                         userGra.add(gradeJson[i].toString())
                     }
 
-//                    HTLoading(curr.context).setSuccessText("Grade Success").showSuccess()
 
                 },
                 Response.ErrorListener { error ->
@@ -203,7 +181,6 @@ class CurriculumFragment : Fragment() {
                     currGetData.setUser(response.getJSONArray(grade))
                     userCurr.put(grade,currGetData.getUserCourse())
 
-//                    HTLoading(curr.context).setSuccessText( grade + " Curr Success").showSuccess()
 
                 },
                 Response.ErrorListener { error ->

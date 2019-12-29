@@ -17,6 +17,11 @@ import com.example.fju_course_registration_sys_rish.ui.course.Course
 import org.json.JSONObject
 import android.animation.ObjectAnimator
 import android.widget.Toast
+import com.superlht.htloading.view.HTLoading
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 
 class InfoFragment(private val course: Course) : Fragment(){
@@ -49,33 +54,47 @@ class InfoFragment(private val course: Course) : Fragment(){
 
         url += course.course_code
 
-        Log.i("seeURL", url)
-        val que = Volley.newRequestQueue(info.context)
-        val req = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener<JSONObject> {
-                    response ->
+        GlobalScope.launch(Dispatchers.Main) {
 
-                DName.text = course.department
-                Grade.text = "N/A"
-                course.loadDetailData(response)
+            HTLoading(info.context).run {
 
-                category.text = course.kind
-                CName.text = course.courseName
-                Credit.text = course.score
-                TName.text = course.professor
-                Exp.text = "N/A"
-                Day.text = course.day
-                Period.text = course.period
-                Outline.text = course.description
+                setLoadingText("Loading...").show()
 
-                MAXLINES = Outline.text.length/17 + 1
-            },
-            Response.ErrorListener { error->
+                val job = async {
+                    Log.i("seeURL", url)
+                    val que = Volley.newRequestQueue(info.context)
+                    val req = JsonObjectRequest(
+                        Request.Method.GET, url, null,
+                        Response.Listener<JSONObject> { response ->
 
-                Log.e("ResponseError", error.toString())
-            })
-        que.add(req)
+                            DName.text = course.department
+                            Grade.text = "N/A"
+                            course.loadDetailData(response)
+
+                            category.text = course.kind
+                            CName.text = course.courseName
+                            Credit.text = course.score
+                            TName.text = course.professor
+                            Exp.text = "N/A"
+                            Day.text = course.day
+                            Period.text = course.period
+                            Outline.text = course.description
+
+                            MAXLINES = Outline.text.length / 17 + 1
+                        },
+                        Response.ErrorListener { error ->
+
+                            Log.e("ResponseError", error.toString())
+                        })
+                    que.add(req)
+                    Thread.sleep(2000)
+                }
+                job.await()
+
+                dismiss()
+            }
+
+        }
 
 
         var isExpanded : Boolean = false
