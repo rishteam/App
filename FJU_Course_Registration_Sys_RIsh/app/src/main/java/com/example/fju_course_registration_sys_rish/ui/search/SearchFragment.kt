@@ -191,7 +191,7 @@ class SearchFragment : Fragment() {
                         val fra = getFragmentManager()
                         val transaction = fra!!.beginTransaction()
                         transaction.replace(R.id.nav_host_fragment, testFragment)
-                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         transaction.commit()
                     },
                     Response.ErrorListener { error->
