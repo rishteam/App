@@ -85,7 +85,6 @@ class InfoFragment(private val course: Course) : Fragment(){
 
                 Log.i("outLineClicked", "expand")
 
-//                expandable.setText()
                 val animation = ObjectAnimator.ofInt(Outline, "maxLines", DEFAULT_MAXLINES)
                 animation.setDuration(200).start()
                 isExpanded = false
