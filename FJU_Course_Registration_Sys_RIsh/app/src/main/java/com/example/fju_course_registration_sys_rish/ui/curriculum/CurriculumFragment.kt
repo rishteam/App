@@ -140,12 +140,10 @@ class CurriculumFragment : Fragment() {
                     Log.i("ResponseGra", "Response is: " + response.toString())
                     Log.i("ResponseK", "Gra Success")
                     val gradeJson = response.getJSONArray("year")
-
                     userGra.clear()
                     for(i in 0 until gradeJson.length()){
                         userGra.add(gradeJson[i].toString())
                     }
-
 
                 },
                 Response.ErrorListener { error ->
