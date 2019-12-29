@@ -39,14 +39,12 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
 
         holder.comment.setEllipsize(TextUtils.TruncateAt.END)
         holder.comment.setMaxLines(DEFAULT_MAXLINE)
-        Log.i("animate1111", MAXLINE.toString())
         var isExpand : Boolean = false
-        var isClicked = false
+
         holder.itemView.setOnClickListener{
 
             if(isExpand){
 
-//                holder.comment.setMaxLines(DEFAULT_MAXLINE)
                 holder.comment.setEllipsize(TextUtils.TruncateAt.END)
                 isExpand = false
                 val animation = ObjectAnimator.ofInt(holder.comment, "maxLines", DEFAULT_MAXLINE)
@@ -54,17 +52,12 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
             }
             else{
 
-//                holder.comment.setMaxLines(25)
                 holder.comment.setEllipsize(null)
                 isExpand = true
                 MAXLINE = holder.comment.text.length/10 + 1
                 val animation = ObjectAnimator.ofInt(holder.comment, "maxLines", MAXLINE)
                 animation.setDuration(200).start()
             }
-
-//            val animation = ObjectAnimator.ofInt(holder.comment, "maxLines", 25)
-//            animation.setDuration(20000000000).start()
-//            Log.i("animate2", holder.comment.maxLines.toString())
         }
 
     }

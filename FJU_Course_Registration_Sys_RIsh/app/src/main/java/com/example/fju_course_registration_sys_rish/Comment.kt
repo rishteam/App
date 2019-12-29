@@ -57,6 +57,31 @@ class Comment{
 
     }
 
+    fun emptyLoad(){
+
+        commentID      = ""
+        stuID          = ""
+        classOpen      = ""
+        className      = ""
+        teacher        = ""
+        createDate     = "1998-12-24 00:00:01"
+        Quiz           = ""
+        MidExam        = ""
+        FinalExam      = ""
+        PersonalReport = ""
+        GroupReport    = ""
+        OtherExam      = ""
+        OtherWork      = ""
+        lvExamAmount   = ""
+        lvFun          = ""
+        lvLearned      = ""
+        lvRequest      = ""
+        lvTeachlear    = ""
+        lvWork         = ""
+        lvRecommend    = ""
+        message        = "No Comment"
+    }
+
 
 
 

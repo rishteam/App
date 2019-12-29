@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="spinner">
+
+        <item>D1</item>
+        <item>D2</item>
+        <item>D3</item>
+        <item>D4</item>
+        <item>D5</item>
+        <item>D6</item>
+        <item>D7</item>
+        <item>D8</item>
+        <item>D9</item>
+        <item>E1</item>
+        <item>E2</item>
+        <item>E3</item>
+
+    </array>
+
+</resources>

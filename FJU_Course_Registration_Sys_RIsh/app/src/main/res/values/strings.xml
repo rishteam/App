@@ -22,8 +22,12 @@
     <string name="welcome">Welcome to RISH</string>
     <string name="Course_Name">Course Name</string>
     <string name="Professor_Name">Professor</string>
+    <string name="course_id">Course ID</string>
+    <string name="department">Department</string>
     <string name="Day">Day</string>
     <string name="Duration">Duration</string>
+    <string name="Period_start">time</string>
+    <string name="Period_end">to</string>
 
     <string name="filter">filter</string>
 
@@ -32,6 +36,8 @@
     <string name="Wed">Wed</string>
     <string name="Thu">Thu</string>
     <string name="Fri">Fri</string>
+    <string name="Sat">Sat</string>
+    <string name="Sun">Sun</string>
 
     <string name="knot_1">D1</string>
     <string name="knot_2">D2</string>
@@ -48,5 +54,7 @@
 
     <string name="string">%1$s</string>
     <string name="search_hint">老師名稱</string>
+
+
 
 </resources>

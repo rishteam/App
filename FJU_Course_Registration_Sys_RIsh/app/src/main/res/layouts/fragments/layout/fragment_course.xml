@@ -17,13 +17,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="417dp"
-            android:layout_weight="1.0"
-            android:orientation="vertical">
-
             <LinearLayout
                 android:id="@+id/toolLayout"
                 android:layout_width="match_parent"
@@ -35,151 +28,23 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/comment_margin"
                     android:background="@color/tab_bar"
-                    app:navigationIcon="@drawable/expand_24dp"
-                    app:contentInsetStartWithNavigation="0dp">
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:navigationIcon="@drawable/expand_24dp">
 
-
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/searchView"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Professor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:iconifiedByDefault="true"
-                        app:queryBackground="@android:color/transparent"
-                        android:layoutDirection="rtl"
-                        app:queryHint="@string/search_hint"
-                        >
-                    </androidx.appcompat.widget.SearchView>
-
+                        android:focusable="auto" />
 
                 </androidx.appcompat.widget.Toolbar>
             </LinearLayout>
 
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/Search_label"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="380dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:focusable="auto"-->
-<!--                android:hint="@string/Course_Name"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.483"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.011">-->
-
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/Course_name"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/Professor_label"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="380dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:focusable="auto"-->
-<!--                android:hint="@string/Professor_Name"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.516"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/Search_label"-->
-<!--                app:layout_constraintVertical_bias="0.0">-->
-
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/Professor"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/Day_label"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="380dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:focusable="auto"-->
-<!--                android:hint="@string/Day"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.483"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/Professor_label"-->
-<!--                app:layout_constraintVertical_bias="0.0">-->
-
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/Day"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/Duration_label"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="380dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:focusable="auto"-->
-<!--                android:hint="@string/Duration"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.483"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/Day_label"-->
-<!--                app:layout_constraintVertical_bias="0.0">-->
-
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/Duration"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/filter"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="96dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:text="@string/filter"
-                app:cornerRadius="3dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Duration_label"
-                app:layout_constraintVertical_bias="0.19" />
-
-        </LinearLayout>
-
-
-        <!--        <ScrollView-->
-        <!--            android:id="@+id/test"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="290dp">-->
-
-
         <LinearLayout
             android:id="@+id/result"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="535dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -187,17 +52,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-        <!--            <ListView-->
-        <!--                android:id="@+id/list"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="0dp"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent"-->
-        <!--                />-->
-
-        <!--        </ScrollView>-->
 
 
     </LinearLayout>

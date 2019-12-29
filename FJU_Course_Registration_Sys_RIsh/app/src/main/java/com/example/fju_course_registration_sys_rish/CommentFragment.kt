@@ -2,11 +2,14 @@ package com.example.fju_course_registration_sys_rish
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +23,6 @@ class CommentFragment(private val cid : String) : Fragment() {
     // TODO: Rename and change types of parameters
         var url = "http://vm.rish.com.tw/db/v1/comments?cid=" + cid
     val commentList_ : MutableList<Comment> = arrayListOf()
-    val HAVECOMMENT = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,13 +58,18 @@ class CommentFragment(private val cid : String) : Fragment() {
             },
             Response.ErrorListener { error->
 
+                Toast.makeText(frame.context, "No Comment", Toast.LENGTH_SHORT).show()
+
+                val comment: Comment = Comment()
+                comment.emptyLoad()
+                commentList_.add(comment)
+                commentList.layoutManager = LinearLayoutManager(frame.context)
+                commentList.adapter = CommentListViewAdapter(commentList_)
+
                 Log.e("ResponseError", error.toString())
             })
         que.add(req)
-//
-//
-//        frame.addView(commentList)
-        // Inflate the layout for this fragment
+
         return root
 
 
