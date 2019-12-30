@@ -28,12 +28,13 @@ class UserCourse : Serializable {
         Log.i("set_user", jsonObject.toString())
         course_code = if(jsonObject.getString("code").isNotEmpty()) jsonObject.getString("code") else "N/A"
         courseName = jsonObject.getString("subject")
-        val T = jsonObject.getJSONArray("time")
-        Log.i("find_time",T[0].toString())
-        day_ch(T.getJSONObject(0).getString("which_day"))
-        Log.i("find_time",courseDate.toString())
-        period_Ch(T.getJSONObject(0).getString("period"))
-        Log.i("find_time",startT.toString()+" "+endT.toString())
+
+        if( !jsonObject.getJSONArray("time").isNull(0) ){
+            val T = jsonObject.getJSONArray("time")
+            day_ch(T.getJSONObject(0).getString("which_day"))
+            period_Ch(T.getJSONObject(0).getString("period"))
+        }
+
 
         if( jsonObject.getBoolean("orig") )
             color = Color.rgb(255,255,255)
