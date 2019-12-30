@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 
                     Log.i("info000",response.toString())
                     credit.setText(response.getString("complete_point"))
-                    selectCourse.setText(response.getString("complete_course"))
+                    selectCourse.setText(response.getString("select_course"))
                     avgGrade.setText(response.getString("avg_score"))
 
                 },

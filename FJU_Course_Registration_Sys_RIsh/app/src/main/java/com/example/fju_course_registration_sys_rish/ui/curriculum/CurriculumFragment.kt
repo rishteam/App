@@ -1,5 +1,6 @@
 package com.example.fju_course_registration_sys_rish.ui.curriculum
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +10,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.Spinner
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -61,6 +64,79 @@ class CurriculumFragment : Fragment() {
 
         val curr = root.findViewById(R.id.full_curriculum) as LinearLayout
         val urlGra = curriculumViewModel.getGraUrl(ldapUser)
+
+        val swipe = root.findViewById(R.id.currSwipe) as SwipeRefreshLayout
+
+        swipe.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(root.context, R.color.colorPrimary))
+        swipe.setColorSchemeColors(Color.WHITE)
+        swipe.setOnRefreshListener{
+            GlobalScope.launch(Dispatchers.Main) {
+
+                HTLoading(curr.context).run {
+
+                    setLoadingText("Loading...").show()
+                    val jobGetGrade = async {
+
+                        Log.i("cortest","Job1")
+                        if ( userGra.size == 0 )
+                            getGrade(curr, urlGra)
+                        Thread.sleep(500)
+
+                    }
+                    jobGetGrade.await()
+
+                    val jobGetCurr = async {
+                        Log.i("cortest","Job2")
+                        for (i in 0 until userGra.size){
+                            val grade = userGra[i]
+                            val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
+                            getCurr(curr,urlCur,grade)
+                            Thread.sleep(500)
+                        }
+
+                    }
+                    jobGetCurr.await()
+
+                    val jobSetSpin = async {
+                        val adapter = ArrayAdapter(gradeSpinner.context, android.R.layout.simple_spinner_dropdown_item, userGra)
+                        gradeSpinner.adapter = adapter
+                        gradeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                            override fun onNothingSelected(parent: AdapterView<*>?) {
+                                Log.i("ResponseCurr","Nothing Select")
+                            }
+                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+
+                                val grade : String = userGra[pos]
+
+                                if( userCurr[grade] != null )
+                                    curriculumViewModel.getCurrByGlobal(userCurr[grade]!!)
+
+                                for(i in 1 until  6){
+
+                                    val ttt : MutableList<UserCourse> = curriculumViewModel.getCourse(i)
+                                    for(i in 0 until ttt.size)
+                                        Log.i("12345678",ttt[i].getName())
+                                }
+
+                                for(i in 0 until 5) {
+                                    week[i].removeAllViews()
+                                    week[i].refreshDrawableState()
+                                    weekCourse[i].layoutManager = LinearLayoutManager(week[i].context)
+                                    weekCourse[i].adapter = RecyclerCurrAdapter(curriculumViewModel.getCourse(i+1), week[i].context)
+                                    week[i].addView(weekCourse[i])
+                                }
+
+                            }
+                        }
+                    }
+                    jobSetSpin.await()
+
+                    dismiss()
+
+                }
+                swipe.isRefreshing = false
+            }
+        }
 
         GlobalScope.launch(Dispatchers.Main) {
 

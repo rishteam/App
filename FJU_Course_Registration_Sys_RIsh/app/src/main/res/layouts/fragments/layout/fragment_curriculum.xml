@@ -5,352 +5,365 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currSwipe">
 
-       <LinearLayout
-           android:id="@+id/full_curriculum"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-
-           <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:scrollbars="none">
 
 
-              <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <Spinner
-                       android:id="@+id/gradeSelect"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"/>
-
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Mon" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Tue" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Wed" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Thu" />
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/Fri" />
-               </LinearLayout>
-
-
-           </LinearLayout>
-
-           <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
-           <!--           session-->
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-               
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_1" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_2" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_3" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_4" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_5" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_6" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_7" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_8" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_9" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_10" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_11" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                   android:layout_weight="1.0"
-                   android:gravity="center">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/knot_12" />
-               </LinearLayout>
-
-           </LinearLayout>
-
-           <!--           Monday-->
-           <LinearLayout
-               android:id="@+id/Monday"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-
-               <androidx.recyclerview.widget.RecyclerView
-                   android:id="@+id/MondayCourse"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent" />
-
-
-           </LinearLayout>
-
-           <!--           Tuesday-->
-           <LinearLayout
-               android:id="@+id/Tuesday"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-               
-
-               <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/TuesdayCourse"
+            <LinearLayout
+                android:id="@+id/full_curriculum"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-           </LinearLayout>
-
-           <!--            Wednesday-->
-           <LinearLayout
-               android:id="@+id/Wednesday"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-               
-
-               <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/WednesdayCourse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-           </LinearLayout>
-
-           <!--            Thursday-->
-           <LinearLayout
-               android:id="@+id/Thursday"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-               
-
-               <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ThursdayCourse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-           </LinearLayout>
-
-           <!--            Friday-->
-           <LinearLayout
-               android:id="@+id/Friday"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1.0"
-               android:orientation="vertical">
-
-               
-
-               <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/FridayCourse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-           </LinearLayout>
-
-
-           </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
 
-       </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-  </ScrollView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/gradeSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Mon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Tue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wed" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Thu" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Fri" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <!--           session-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_3" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_4" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_5" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_6" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_7" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_8" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_9" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_10" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_11" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/knot_12" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--           Monday-->
+                    <LinearLayout
+                        android:id="@+id/Monday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/MondayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+
+                    <!--           Tuesday-->
+                    <LinearLayout
+                        android:id="@+id/Tuesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/TuesdayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <!--            Wednesday-->
+                    <LinearLayout
+                        android:id="@+id/Wednesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/WednesdayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <!--            Thursday-->
+                    <LinearLayout
+                        android:id="@+id/Thursday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/ThursdayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <!--            Friday-->
+                    <LinearLayout
+                        android:id="@+id/Friday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/FridayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
