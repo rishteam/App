@@ -62,6 +62,7 @@ class Course_detail : AppCompatActivity() {
         val fabDel: FloatingActionButton = findViewById(R.id.fab_del)
 
         fabAdd.setOnClickListener {
+            closeFABmenu()
             val url = "http://vm.rish.com.tw/db/v1/fju_course/"+ UserData.ldapUser+"/"+course.course_code
             val que = Volley.newRequestQueue(it.context)
             val reqGra = object : JsonObjectRequest(
@@ -85,6 +86,7 @@ class Course_detail : AppCompatActivity() {
             que.add(reqGra)
         }
         fabDel.setOnClickListener {
+            closeFABmenu()
             val url = "http://vm.rish.com.tw/db/v1/fju_course/"+ UserData.ldapUser+"/"+course.course_code
             val que = Volley.newRequestQueue(it.context)
             val reqGra = object : JsonObjectRequest(
@@ -107,6 +109,9 @@ class Course_detail : AppCompatActivity() {
             }
             que.add(reqGra)
         }
+
+
+
 
     }
 
