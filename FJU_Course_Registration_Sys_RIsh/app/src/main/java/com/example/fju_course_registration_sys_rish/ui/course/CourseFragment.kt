@@ -55,14 +55,7 @@ class CourseFragment(var course: MutableList<Course> = arrayListOf()) : Fragment
 
         tb.setOnClickListener {
 
-            Toast.makeText(toolLayout.context, "hih", Toast.LENGTH_SHORT).show()
             navController.navigate(R.id.nav_search)
-//            val testFragment : SearchFragment = SearchFragment()
-//            val fra = getFragmentManager()
-//            val transaction = fra!!.beginTransaction()
-//            transaction.replace(R.id.nav_host_fragment, testFragment)
-//            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//            transaction.commit()
         }
         course = courseData
 

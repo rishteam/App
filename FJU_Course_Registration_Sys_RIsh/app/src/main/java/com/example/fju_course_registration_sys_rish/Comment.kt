@@ -6,7 +6,8 @@ import org.json.JSONObject
 class Comment{
 
     var commentID      : String = ""
-    var stuID           : String = ""
+    var stuID          : String = ""
+    var nickName       : String = ""
     var classOpen      : String = ""
     var className      : String = ""
     var teacher        : String = ""
@@ -26,6 +27,8 @@ class Comment{
     var lvWork         : String = ""
     var lvRecommend    : String = ""
     var message        : String = ""
+    var source         : String = ""
+    var link           : String = ""
 
 
 
@@ -35,6 +38,7 @@ class Comment{
 
         commentID      = if(jsonObject.getString("commentID").isNotEmpty()) jsonObject.getString("commentID") else "N/A"
         stuID          = if(jsonObject.getString("stuID").isNotEmpty()) jsonObject.getString("stuID") else "N/A"
+        nickName       = if(jsonObject.getString("nickname").isNotEmpty()) jsonObject.getString("nickname") else "N/A"
         classOpen      = if(jsonObject.getString("classOpen").isNotEmpty()) jsonObject.getString("classOpen") else "N/A"
         className      = if(jsonObject.getString("className").isNotEmpty()) jsonObject.getString("className") else "N/A"
         teacher        = if(jsonObject.getString("teacher").isNotEmpty()) jsonObject.getString("teacher") else "N/A"
@@ -54,13 +58,15 @@ class Comment{
         lvWork         = if(jsonObject.getString("lvWork").isNotEmpty()) jsonObject.getString("lvWork") else "N/A"
         lvRecommend    = if(jsonObject.getString("lvRecommend").isNotEmpty()) jsonObject.getString("lvRecommend") else "N/A"
         message        = if(jsonObject.getString("message").isNotEmpty()) jsonObject.getString("message") else "N/A"
-
+        source         = if(jsonObject.getString("source").isNotEmpty()) jsonObject.getString("source") else "N/A"
+        link           = if(jsonObject.getString("link").isNotEmpty()) jsonObject.getString("link") else "N/A"
     }
 
     fun emptyLoad(){
 
         commentID      = ""
         stuID          = ""
+        nickName       = ""
         classOpen      = ""
         className      = ""
         teacher        = ""
@@ -80,6 +86,8 @@ class Comment{
         lvWork         = ""
         lvRecommend    = ""
         message        = "No Comment"
+        source         = ""
+        link           = ""
     }
 
 

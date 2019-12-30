@@ -55,6 +55,8 @@
     <string name="string">%1$s</string>
     <string name="search_hint">老師名稱</string>
 
+    <string name="comment">Comment</string>
+
 
 
 </resources>

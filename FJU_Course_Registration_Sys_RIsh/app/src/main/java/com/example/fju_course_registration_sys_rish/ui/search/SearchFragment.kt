@@ -58,7 +58,6 @@ class SearchFragment : Fragment() {
             ViewModelProviders.of(this).get(SearchViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         val test = root.findViewById(R.id.test) as ConstraintLayout
-        Toast.makeText(test.context, "2313123", Toast.LENGTH_SHORT).show()
 
         val spinner_layout = root.findViewById(R.id.spinner_layout) as LinearLayout
         val spinner = root.findViewById(R.id.period_start) as Spinner
@@ -189,16 +188,18 @@ class SearchFragment : Fragment() {
 
                         Log.i("response", response.toString())
 
-                        searchViewModel.loadData(response)
+                        if(response.length() > 0){
 
-                        courseData = searchViewModel.getList()
-                        navController.navigate(R.id.nav_course)
-//                        val testFragment : CourseFragment = CourseFragment(searchViewModel.getList())
-//                        val fra = getFragmentManager()
-//                        val transaction = fra!!.beginTransaction()
-//                        transaction.replace(R.id.nav_host_fragment, testFragment)
-//                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//                        transaction.commit()
+                            searchViewModel.loadData(response)
+
+                            courseData = searchViewModel.getList()
+                            navController.navigate(R.id.nav_course)
+                        }
+                        else{
+
+                            Toast.makeText(spinner_layout.context, "查無此課程", Toast.LENGTH_SHORT).show()
+                        }
+
                     },
                     Response.ErrorListener { error->
 
