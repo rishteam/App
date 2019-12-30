@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
                 },
                 Response.ErrorListener { error ->
                     Log.i("info000","fuck")
-                    getinfo(root)
+//                    getinfo(root)
                 })
         {
             override fun getHeaders(): MutableMap<String, String> {

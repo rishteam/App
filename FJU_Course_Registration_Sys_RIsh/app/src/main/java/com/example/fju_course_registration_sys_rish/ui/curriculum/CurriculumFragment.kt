@@ -72,7 +72,7 @@ class CurriculumFragment : Fragment() {
                     Log.i("cortest","Job1")
                     if ( userGra.size == 0 )
                         getGrade(curr, urlGra)
-                    Thread.sleep(1500)
+                    Thread.sleep(500)
 
                 }
                 jobGetGrade.await()
@@ -84,7 +84,7 @@ class CurriculumFragment : Fragment() {
                         val urlCur = curriculumViewModel.getCurUrl(ldapUser,grade)
                         if( userCurr[grade]?.size ?: 0 == 0 )
                             getCurr(curr,urlCur,grade)
-                        Thread.sleep(1500)
+                        Thread.sleep(500)
                     }
 
                 }
@@ -104,10 +104,12 @@ class CurriculumFragment : Fragment() {
                             if( userCurr[grade] != null )
                                 curriculumViewModel.getCurrByGlobal(userCurr[grade]!!)
 
-                            val ttt : MutableList<UserCourse> = curriculumViewModel.getCourse(1)
-                            for(i in 0 until ttt.size)
-                                Log.i("12345678",ttt[i].getName())
+                            for(i in 1 until  6){
 
+                                val ttt : MutableList<UserCourse> = curriculumViewModel.getCourse(i)
+                                for(i in 0 until ttt.size)
+                                    Log.i("12345678",ttt[i].getName())
+                            }
 
                             for(i in 0 until 5) {
                                 week[i].removeAllViews()
@@ -116,7 +118,6 @@ class CurriculumFragment : Fragment() {
                                 weekCourse[i].adapter = RecyclerCurrAdapter(curriculumViewModel.getCourse(i+1), week[i].context)
                                 week[i].addView(weekCourse[i])
                             }
-
 
                         }
                     }
@@ -178,6 +179,10 @@ class CurriculumFragment : Fragment() {
                     val currGetData  = CurriculumViewModel()
                     currGetData.setUser(response.getJSONArray(grade))
                     userCurr.put(grade,currGetData.getUserCourse())
+
+                    for(i in 0 until (userCurr[grade]?.size ?: 0)){
+                        Log.i("pick???", grade+ userCurr[grade]?.get(i)?.getName()?:"")
+                    }
 
 
                 },

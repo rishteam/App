@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:id="@+id/CourseNameView"
             android:text=""
             android:textColor="@color/primaryText"

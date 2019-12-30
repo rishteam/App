@@ -16,7 +16,10 @@ import com.android.volley.toolbox.Volley
 import com.example.fju_course_registration_sys_rish.ui.course.Course
 import org.json.JSONObject
 import android.animation.ObjectAnimator
+import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.superlht.htloading.view.HTLoading
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -118,6 +121,8 @@ class InfoFragment(private val course: Course) : Fragment(){
                 more_less.setText(getString(R.string.string, "less"))
             }
         }
+
+
 
         return root
     }

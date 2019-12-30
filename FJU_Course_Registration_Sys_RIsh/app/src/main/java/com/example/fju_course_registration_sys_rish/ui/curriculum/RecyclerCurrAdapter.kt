@@ -7,19 +7,24 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.fju_course_registration_sys_rish.CourseData
 import com.example.fju_course_registration_sys_rish.R
 import com.example.fju_course_registration_sys_rish.Course_detail
+import com.example.fju_course_registration_sys_rish.Home
 import com.example.fju_course_registration_sys_rish.ui.course.Course
-import com.example.fju_course_registration_sys_rish.ui.course.RecyclerListViewAdapter
+import com.example.fju_course_registration_sys_rish.ui.search.SearchViewModel
+
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -27,7 +32,7 @@ import org.json.JSONObject
 private val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
 
-class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private val context: Context) : RecyclerView.Adapter<RecyclerCurrAdapter.ViewHolder>(){
+class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private val context: Context ) : RecyclerView.Adapter<RecyclerCurrAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.i("adapter", "onCreate")
@@ -45,6 +50,7 @@ class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private va
         holder.courseCardView.setCardBackgroundColor(curr[position].color)
 
         holder.itemView.setOnClickListener{
+
             if( curr[position].courseName != "" ){
 
                 val url = "http://vm.rish.com.tw/db/v1/fju_course/courses?course_code="+curr[position].course_code
@@ -67,9 +73,32 @@ class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private va
                     })
                 que.add(req)
 
+            }
+            else{
+//
+                val url = "http://vm.rish.com.tw/db/v1/fju_course/courses?period=D"+curr[position].startT+"-D"+curr[position].endT
+                Log.i("ResponseIII",url)
+                val que = Volley.newRequestQueue(it.context)
+                val req = JsonArrayRequest(Request.Method.GET, url, null,
+                    Response.Listener<JSONArray> {
+                            response ->
+                        Log.i("ResponseIII", response.toString())
+                        val searchViewModel = SearchViewModel()
+                        searchViewModel.loadData(response)
+                        CourseData.courseData = searchViewModel.getList()
+                        findNavController(it).navigate(R.id.nav_course)
+                    },
+                    Response.ErrorListener { error->
+
+                        Toast.makeText(it.context, "Failed to connect the API", Toast.LENGTH_SHORT).show()
+                        Log.i("ResponseIII", error.toString())
+
+                    })
+                que.add(req)
 
 
             }
+
         }
 
     }

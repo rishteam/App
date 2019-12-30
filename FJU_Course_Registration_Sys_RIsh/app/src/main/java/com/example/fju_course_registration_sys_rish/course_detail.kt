@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import com.example.fju_course_registration_sys_rish.ui.course.Course
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.course_activity.*
+
+
 
 class Course_detail : AppCompatActivity() {
 
@@ -23,13 +25,45 @@ class Course_detail : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = findViewById(R.id.fab)
 
-        Log.i("DataInCourseDetail", course.courseName)
+        val addFab: FloatingActionButton = findViewById(R.id.add_fab)
+        val comFab: FloatingActionButton = findViewById(R.id.comment_fab)
+        
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                animateFab(tab.position)
+            }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+
+        })
+
+
+
+
+
+    }
+
+
+    private fun animateFab(pos: Int){
+        if( pos == 0 ){
+            add_fab.show()
+            comment_fab.hide()
+        }
+        else if( pos == 1 ){
+            comment_fab.show()
+            add_fab.hide()
+        }
+        else{
+            add_fab.show()
+            comment_fab.hide()
         }
     }
+
 }

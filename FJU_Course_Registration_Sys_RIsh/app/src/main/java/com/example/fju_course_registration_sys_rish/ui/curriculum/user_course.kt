@@ -41,7 +41,6 @@ class UserCourse : Serializable {
             color = Color.rgb(0xAF,0xFF,0xA6)
 
 
-
     }
 
     fun emptyCourse(d:Int,t:Int){
@@ -49,19 +48,19 @@ class UserCourse : Serializable {
         courseDate = d
         startT = t
         endT = t
-        color = Color.argb(0,0, 0, 0)
+        color = Color.argb(64,255, 255, 255)
     }
 
     fun day_ch(str :String){
-        if( str == "一")
+        if( str == "Mon" || str == "一" )
             courseDate = 1
-        if( str == "二")
+        if( str == "Tue" || str == "二" )
             courseDate = 2
-        if( str == "三")
+        if( str == "Wed" || str == "三" )
             courseDate = 3
-        if( str == "四")
+        if( str == "Thu" || str == "四" )
             courseDate = 4
-        if( str == "五")
+        if( str == "Fri" || str == "五" )
             courseDate = 5
     }
 
