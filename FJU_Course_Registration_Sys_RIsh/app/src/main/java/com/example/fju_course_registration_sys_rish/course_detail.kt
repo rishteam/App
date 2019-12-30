@@ -3,7 +3,12 @@ package com.example.fju_course_registration_sys_rish
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.fju_course_registration_sys_rish.ui.course.Course
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -28,7 +33,7 @@ class Course_detail : AppCompatActivity() {
 
         val addFab: FloatingActionButton = findViewById(R.id.add_fab)
         val comFab: FloatingActionButton = findViewById(R.id.comment_fab)
-        
+
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 animateFab(tab.position)
@@ -44,12 +49,78 @@ class Course_detail : AppCompatActivity() {
 
         })
 
+        addFab.setOnClickListener {
+            if( !isFABOpen ){
+                showFABmenu()
+            }
+            else{
+                closeFABmenu()
+            }
+        }
 
+        val fabAdd: FloatingActionButton = findViewById(R.id.fab_add)
+        val fabDel: FloatingActionButton = findViewById(R.id.fab_del)
 
-
+        fabAdd.setOnClickListener {
+            val url = "http://vm.rish.com.tw/db/v1/fju_course/"+ UserData.ldapUser+"/"+course.course_code
+            val que = Volley.newRequestQueue(it.context)
+            val reqGra = object : JsonObjectRequest(
+                Request.Method.POST, url,null,
+                Response.Listener { response ->
+                    Toast.makeText(it.context,"ADD success",Toast.LENGTH_SHORT).show()
+                    Log.i("Fab(ADD/DEL)","ADD Success")
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(it.context,"ADD fail",Toast.LENGTH_SHORT).show()
+                    Log.i("Fab(ADD/DEL)","ADD Fail")
+                })
+            {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    val authorization = "Digest " + UserData.ldapToken
+                    headers["Authorization"] = authorization
+                    return headers
+                }
+            }
+            que.add(reqGra)
+        }
+        fabDel.setOnClickListener {
+            val url = "http://vm.rish.com.tw/db/v1/fju_course/"+ UserData.ldapUser+"/"+course.course_code
+            val que = Volley.newRequestQueue(it.context)
+            val reqGra = object : JsonObjectRequest(
+                Request.Method.DELETE, url,null,
+                Response.Listener { response ->
+                    Toast.makeText(it.context,"DELETE success",Toast.LENGTH_SHORT).show()
+                    Log.i("Fab(ADD/DEL)","Del Success")
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(it.context,"DELETE fail",Toast.LENGTH_SHORT).show()
+                    Log.i("Fab(ADD/DEL)","Del Fail")
+                })
+            {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    val authorization = "Digest " + UserData.ldapToken
+                    headers["Authorization"] = authorization
+                    return headers
+                }
+            }
+            que.add(reqGra)
+        }
 
     }
 
+    private var isFABOpen = false
+    private fun showFABmenu(){
+        isFABOpen = true
+        fab_add.animate().translationY(-getResources().getDimension(R.dimen.standard_125))
+        fab_del.animate().translationY(-getResources().getDimension(R.dimen.standard_65))
+    }
+    private fun closeFABmenu(){
+        isFABOpen = false
+        fab_add.animate().translationY(0F)
+        fab_del.animate().translationY(0F)
+    }
 
     private fun animateFab(pos: Int){
         if( pos == 0 ){
@@ -59,6 +130,7 @@ class Course_detail : AppCompatActivity() {
         else if( pos == 1 ){
             comment_fab.show()
             add_fab.hide()
+            closeFABmenu()
         }
         else{
             add_fab.show()

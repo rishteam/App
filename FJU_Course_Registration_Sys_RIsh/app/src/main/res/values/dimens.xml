@@ -15,4 +15,10 @@
     <dimen name="edit_text_margin">5dp</dimen>
     <dimen name="week_text_size">10sp</dimen>
 
+    <dimen name="standard_65">65dp</dimen>
+    <dimen name="standard_125">125dp</dimen>
+
+
+
+
 </resources>
