@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/infoPage">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:text="以修學分數"
+                    android:text="已修學分數"
                     android:textColor="@color/primaryText"
                     android:textSize="30dp" />
                 <TextView
@@ -90,7 +91,7 @@
                     android:id="@+id/credit"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:text="87"
+                    android:text=""
                     android:textColor="@color/primaryText"
                     android:textSize="30dp" />
 
@@ -125,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:text="以選課數"
+                    android:text="已選課數"
                     android:textColor="@color/primaryText"
                     android:textSize="30dp" />
                 <TextView
@@ -134,7 +135,7 @@
                     android:id="@+id/selectCourse"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:text="87"
+                    android:text=""
                     android:textColor="@color/primaryText"
                     android:textSize="30dp" />
 
@@ -178,7 +179,7 @@
                     android:id="@+id/avgGrade"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:text="87.87"
+                    android:text=""
                     android:textColor="@color/primaryText"
                     android:textSize="30dp" />
 
