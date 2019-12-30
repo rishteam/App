@@ -22,6 +22,7 @@ import com.example.fju_course_registration_sys_rish.CourseData
 import com.example.fju_course_registration_sys_rish.R
 import com.example.fju_course_registration_sys_rish.Course_detail
 import com.example.fju_course_registration_sys_rish.Home
+import com.example.fju_course_registration_sys_rish.UserData.Companion.ldapUser
 import com.example.fju_course_registration_sys_rish.ui.course.Course
 import com.example.fju_course_registration_sys_rish.ui.search.SearchViewModel
 
@@ -76,7 +77,15 @@ class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private va
             }
             else{
 //
-                val url = "http://vm.rish.com.tw/db/v1/fju_course/courses?period=D"+curr[position].startT+"-D"+curr[position].endT+"&include=true&day="+curr[position].courseDate
+                var period:String = ""
+                if( curr[position].getStart() < 9 ){
+                    period = "D"+ curr[position].getStart().toString()
+                }
+                else{
+                    period = "E"+ (curr[position].getStart()-9).toString()
+                }
+
+                val url = "http://vm.rish.com.tw/db/v1/fju_course/auto/"+ldapUser+"/"+curr[position].getDate()+"/"+period
                 Log.i("ResponseIII",url)
                 val que = Volley.newRequestQueue(it.context)
                 val req = JsonArrayRequest(Request.Method.GET, url, null,

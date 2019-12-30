@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.Login -> toHomePage(Account.text.toString(),PWD.text.toString())
 //            R.id.fordbg -> toHome()
-            R.id.fordbg -> toHomePage("406262319","aa987654321")
-            R.id.Login_page -> test()
+//            R.id.fordbg -> toHomePage("406262319","aa987654321")
+//            R.id.Login_page -> test()
 
         }
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         Login.setOnClickListener(this)
-        fordbg.setOnClickListener(this)
+//        fordbg.setOnClickListener(this)
         Login_page.setOnClickListener(this)
 
     }
