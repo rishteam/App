@@ -68,7 +68,9 @@ class UserCourse : Serializable {
         val sT = str.substring(0,2)
         val eT = str.substring(3,5)
         Log.i("find_time", sT +" " + eT )
-        startT = (sT[1]-'0')
+        if( sT[0] == 'E' )
+            startT = 9
+        startT += (sT[1]-'0')
         if( eT[0] == 'E' )
             endT = 9
         endT += (eT[1]-'0')

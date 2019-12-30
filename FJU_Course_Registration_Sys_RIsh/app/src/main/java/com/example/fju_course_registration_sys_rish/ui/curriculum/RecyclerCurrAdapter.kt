@@ -76,7 +76,7 @@ class RecyclerCurrAdapter(private val curr : MutableList<UserCourse>, private va
             }
             else{
 //
-                val url = "http://vm.rish.com.tw/db/v1/fju_course/courses?period=D"+curr[position].startT+"-D"+curr[position].endT
+                val url = "http://vm.rish.com.tw/db/v1/fju_course/courses?period=D"+curr[position].startT+"-D"+curr[position].endT+"&include=true&day="+curr[position].courseDate
                 Log.i("ResponseIII",url)
                 val que = Volley.newRequestQueue(it.context)
                 val req = JsonArrayRequest(Request.Method.GET, url, null,
