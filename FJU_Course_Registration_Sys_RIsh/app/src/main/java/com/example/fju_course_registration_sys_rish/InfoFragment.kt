@@ -54,6 +54,7 @@ class InfoFragment(private val course: Course) : Fragment(){
         val Period = root.findViewById(R.id.coursePeriod) as TextView
         val Outline = root.findViewById(R.id.courseOutline) as TextView
         val more_less = root.findViewById(R.id.more_less) as TextView
+        val grade  = root.findViewById(R.id.grade) as TextView
 
         url += course.course_code
 
@@ -82,6 +83,7 @@ class InfoFragment(private val course: Course) : Fragment(){
                             Day.text = course.day
                             Period.text = course.period
                             Outline.text = course.description
+                            grade.text = course.grade
 
                             MAXLINES = Outline.text.length / 17 + 1
                         },

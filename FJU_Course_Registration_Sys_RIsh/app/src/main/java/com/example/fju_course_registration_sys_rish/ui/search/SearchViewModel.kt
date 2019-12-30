@@ -17,6 +17,15 @@ class SearchViewModel : ViewModel() {
         "department",
         "period"
     )
+
+    val kindList : List<String> = listOf(
+
+        "必",
+        "選",
+        "通",
+        "輔"
+    )
+
     val dayList : List<String> = listOf(
 
         "mon",
@@ -46,8 +55,7 @@ class SearchViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-
-    fun getURL(search: MutableMap<String, String>, day: MutableMap<String, Boolean>, overlap: Boolean) : String{
+    fun getURL(search: MutableMap<String, String>, day: MutableMap<String, Boolean>, overlap: Boolean, kind: MutableMap<String, Boolean>) : String{
 
         var url = "http://vm.rish.com.tw/db/v1/fju_course/courses?"
 
@@ -68,12 +76,25 @@ class SearchViewModel : ViewModel() {
 
         if(d.isNotEmpty()){
 
-            url += "day=" + d
+            url += "day=" + d + "&"
         }
 
         if(overlap){
 
-            url += "include=" + overlap.toString()
+            url += "include=" + overlap.toString() + "&"
+        }
+
+        var kindtext = ""
+        for(i in kindList){
+
+            if(kind[i]!!){
+
+                kindtext += i
+            }
+        }
+        if(kindtext.isNotEmpty()){
+
+            url += "kind=" + kindtext
         }
 
         return url

@@ -57,7 +57,10 @@
 
     <string name="comment">Comment</string>
     <string name="add_comment">Add Comment</string>
-
-
-
+    <string name="kind">kind</string>
+    <string name="major">必修</string>
+    <string name="elective">選修</string>
+    <string name="general">通識</string>
+    <string name="minor">輔系</string>
+    
 </resources>

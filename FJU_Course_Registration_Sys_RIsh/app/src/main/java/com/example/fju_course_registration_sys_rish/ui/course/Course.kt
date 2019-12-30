@@ -23,6 +23,7 @@ class Course : Serializable{
     var link        : String = ""
     var student     : String = ""
     var lang        : String = ""
+    var grade       : String = ""
 
 
     init {
@@ -44,6 +45,7 @@ class Course : Serializable{
         link        = "N/A"
         student     = "N/A"
         lang        = "N/A"
+        grade       = "N/A"
 
     }
 
@@ -70,6 +72,7 @@ class Course : Serializable{
         link        = if(jsonObject.getString("link").isNotEmpty()) jsonObject.getString("link") else "N/A"
         student     = if(jsonObject.getString("student").isNotEmpty()) jsonObject.getString("student") else "N/A"
         lang        = if(jsonObject.getString("lang").isNotEmpty()) jsonObject.getString("lang") else "N/A"
+        grade       = if(jsonObject.getString("grade").isNotEmpty()) jsonObject.getString("grade") else "N/A"
     }
 
 }
