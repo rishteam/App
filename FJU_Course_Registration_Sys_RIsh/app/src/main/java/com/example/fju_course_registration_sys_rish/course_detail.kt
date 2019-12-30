@@ -1,5 +1,6 @@
 package com.example.fju_course_registration_sys_rish
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -44,7 +45,12 @@ class Course_detail : AppCompatActivity() {
 
         })
 
+        comFab.setOnClickListener{
 
+            val intent = Intent(it.context, add_comment::class.java)
+            intent.putExtra("cid", course.course_code)
+            startActivity(intent)
+        }
 
 
 
