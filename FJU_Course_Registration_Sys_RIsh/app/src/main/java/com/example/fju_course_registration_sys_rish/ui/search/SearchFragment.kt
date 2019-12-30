@@ -188,10 +188,18 @@ class SearchFragment : Fragment() {
 
                         Log.i("response", response.toString())
 
-                        searchViewModel.loadData(response)
+                        if(response.length() > 0){
 
-                        courseData = searchViewModel.getList()
-                        navController.navigate(R.id.nav_course)
+                            searchViewModel.loadData(response)
+
+                            courseData = searchViewModel.getList()
+                            navController.navigate(R.id.nav_course)
+                        }
+                        else{
+
+                            Toast.makeText(spinner_layout.context, "查無此課程", Toast.LENGTH_SHORT).show()
+                        }
+
                     },
                     Response.ErrorListener { error->
 

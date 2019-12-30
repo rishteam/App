@@ -29,10 +29,18 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
         Log.i("adapter", "onBind")
         Log.i("TimeAgo", comment[position].createDate)
 
-        holder.studentId.text = comment[position].stuID
+        if(comment[position].stuID == "000000000"){
+
+            holder.nickname.text = "來自" + comment[position].source
+        }
+        else{
+
+            holder.nickname.text = comment[position].nickName
+            holder.studentId.text = comment[position].stuID
+        }
+
         holder.time.text = getTimeAgo(comment[position].createDate)
         holder.comment.text = comment[position].message
-        //getTimeAgo(comment[position].createDate)
         holder.comment.setEllipsize(TextUtils.TruncateAt.END)
         holder.comment.setMaxLines(DEFAULT_MAXLINE)
         var isExpand : Boolean = false
@@ -68,6 +76,7 @@ class CommentListViewAdapter(private val comment : MutableList<Comment>) : Recyc
         val studentId: TextView = view.findViewById(R.id.studentID)
         val time: TextView = view.findViewById(R.id.time)
         val comment: TextView = view.findViewById(R.id.comment)
+        val nickname : TextView = view.findViewById(R.id.nickname)
     }
 
     fun getTimeAgo(time: String): String {

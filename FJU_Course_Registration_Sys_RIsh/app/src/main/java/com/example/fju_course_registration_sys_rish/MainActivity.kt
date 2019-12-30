@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
 
             R.id.Login -> toHomePage(Account.text.toString(),PWD.text.toString())
-            R.id.fordbg -> toHome()
-//            R.id.fordbg -> toHomePage("406262319","aa987654321")
+//            R.id.fordbg -> toHome()
+            R.id.fordbg -> toHomePage("406262319","aa987654321")
             R.id.Login_page -> test()
 
         }
