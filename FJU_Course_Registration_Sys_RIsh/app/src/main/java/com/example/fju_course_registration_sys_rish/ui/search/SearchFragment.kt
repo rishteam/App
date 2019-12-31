@@ -33,10 +33,10 @@ class SearchFragment : Fragment() {
 
     var kind : MutableMap<String, Boolean> = mutableMapOf(
 
-        "必" to false,
-        "選" to false,
-        "通" to false,
-        "輔" to false
+        "major" to false,
+        "elective" to false,
+        "general" to false,
+        "minor" to false
     )
 
 
@@ -204,7 +204,7 @@ class SearchFragment : Fragment() {
 
 
                 url = searchViewModel.getURL(search, day, overlap, kind)
-
+                Log.i("seeUrl", url)
                 val que = Volley.newRequestQueue(spinner_layout.context)
                 val req = JsonArrayRequest(Request.Method.GET, url, null,
                     Response.Listener<JSONArray> {
